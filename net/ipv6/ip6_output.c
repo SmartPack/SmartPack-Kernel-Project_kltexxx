@@ -1280,8 +1280,12 @@ int ip6_append_data(struct sock *sk, int getfrag(void *from, char *to,
 		inet->cork.fl.u.ip6 = *fl6;
 		np->cork.hop_limit = hlimit;
 		np->cork.tclass = tclass;
-		mtu = np->pmtudisc == IPV6_PMTUDISC_PROBE ?
-		      rt->dst.dev->mtu : dst_mtu(&rt->dst);
+		if (rt->dst.flags & DST_XFRM_TUNNEL)
+			mtu = np->pmtudisc == IPV6_PMTUDISC_PROBE ?
+			      rt->dst.dev->mtu : dst_mtu(&rt->dst);
+		else
+			mtu = np->pmtudisc == IPV6_PMTUDISC_PROBE ?
+			      rt->dst.dev->mtu : dst_mtu(rt->dst.path);
 		if (np->frag_size < mtu) {
 			if (np->frag_size)
 				mtu = np->frag_size;
@@ -1409,13 +1413,16 @@ alloc_new_skb:
 
 			alloclen += dst_exthdrlen;
 
-			/*
-			 * The last fragment gets additional space at tail.
-			 * Note: we overallocate on fragments with MSG_MODE
-			 * because we have no idea if we're the last one.
-			 */
-			if (datalen == length + fraggap)
-				alloclen += rt->dst.trailer_len;
+			if (datalen != length + fraggap) {
+				/*
+				 * this is not the last fragment, the trailer
+				 * space is regarded as data space.
+				 */
+				datalen += rt->dst.trailer_len;
+			}
+
+			alloclen += rt->dst.trailer_len;
+			fraglen = datalen + fragheaderlen;
 
 			/*
 			 * We just reserve space for fragment header.
