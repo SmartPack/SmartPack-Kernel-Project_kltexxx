@@ -1937,7 +1937,6 @@ static int ax88772b_bind(struct usbnet *dev, struct usb_interface *intf)
 		deverr(dev, "Select PHY #1 failed: %d", ret);
 		goto err_out;
 	}
-
 	if (dev->mii.phy_id != 0x10) {
 		deverr(dev, "Got wrong PHY ID: %02x", dev->mii.phy_id);
 		ret = -EIO;
@@ -3895,5 +3894,3 @@ module_exit(asix_exit);
 MODULE_AUTHOR("David Hollis");
 MODULE_DESCRIPTION("ASIX AX8817X based USB 2.0 Ethernet Devices");
 MODULE_LICENSE("GPL");
-
-
