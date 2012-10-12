@@ -899,7 +899,8 @@ static void tcp_v6_send_response(struct sk_buff *skb, u32 seq, u32 ack, u32 win,
 	__tcp_v6_send_check(buff, &fl6.saddr, &fl6.daddr);
 
 	fl6.flowi6_proto = IPPROTO_TCP;
-	fl6.flowi6_oif = inet6_iif(skb);
+	if (ipv6_addr_type(&fl6.daddr) & IPV6_ADDR_LINKLOCAL)
+		fl6.flowi6_oif = inet6_iif(skb);
 	fl6.flowi6_mark = IP6_REPLY_MARK(net, skb->mark);
 	fl6.fl6_dport = t1->dest;
 	fl6.fl6_sport = t1->source;
@@ -1344,7 +1345,6 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	newsk->sk_bound_dev_if = treq->iif;
 
 	/* Now IPv6 options...
-
 	   First: no IPv4 options.
 	 */
 	newinet->inet_opt = NULL;
@@ -1369,7 +1369,6 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	newnp->rcv_tclass = ipv6_tclass(ipv6_hdr(skb));
 
 	/* Clone native IPv6 options from listening socket (if any)
-
 	   Yes, keeping reference count would be much more clever,
 	   but we make one more one thing there: reattach optmem
 	   to newsk.
@@ -1492,12 +1491,10 @@ static int tcp_v6_do_rcv(struct sock *sk, struct sk_buff *skb)
 	 */
 
 	/* Do Stevens' IPV6_PKTOPTIONS.
-
 	   Yes, guys, it is the only place in our code, where we
 	   may make it not affecting IPv4.
 	   The rest of code is protocol independent,
 	   and I do not like idea to uglify IPv4.
-
 	   Actually, all the idea behind IPV6_PKTOPTIONS
 	   looks not very well thought. For now we latch
 	   options, received in the last packet, enqueued
@@ -1560,7 +1557,6 @@ csum_err:
 
 ipv6_pktoptions:
 	/* Do you ask, what is it?
-
 	   1. skb was enqueued by tcp.
 	   2. skb is added to tail of read queue, rather than out of order.
 	   3. socket is not in passive state.
