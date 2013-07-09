@@ -27,6 +27,10 @@ struct virtqueue {
 	void *priv;
 };
 
+unsigned virtqueue_enable_cb_prepare(struct virtqueue *vq);
+
+bool virtqueue_poll(struct virtqueue *vq, unsigned);
+
 /**
  * virtqueue_ops - operations for virtqueue abstraction layer
  * @add_buf: expose buffer to other end
