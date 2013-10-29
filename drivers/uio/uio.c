@@ -622,8 +622,13 @@ static int uio_vma_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 	unsigned long offset;
 
 	int mi = uio_find_mem_index(vma);
+	struct uio_mem *mem;
 	if (mi < 0)
 		return VM_FAULT_SIGBUS;
+	mem = idev->info->mem + mi;
+
+	if (vma->vm_end - vma->vm_start > mem->size)
+		return -EINVAL;
 
 	/*
 	 * We need to subtract mi because userspace uses offset = N*PAGE_SIZE
@@ -674,6 +679,7 @@ static int uio_mmap_physical(struct vm_area_struct *vma)
 
 	vma->vm_ops = &uio_physical_vm_ops;
 	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+
 
 	/*
 	 * We cannot use the vm_iomap_memory() helper here,
