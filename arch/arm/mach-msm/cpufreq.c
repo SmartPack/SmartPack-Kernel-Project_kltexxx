@@ -495,6 +495,10 @@ static int msm_cpufreq_resume(struct cpufreq_policy *policy)
 
 static struct freq_attr *msm_freq_attr[] = {
 	&cpufreq_freq_attr_scaling_available_freqs,
+#ifdef CONFIG_MSM_SLEEPER
+	&msm_cpufreq_attr_max_screen_off_khz,
+	&msm_cpufreq_attr_max_screen_off,
+#endif
 	NULL,
 };
 
