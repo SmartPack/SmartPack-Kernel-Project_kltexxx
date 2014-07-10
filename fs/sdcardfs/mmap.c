@@ -47,10 +47,14 @@ static int sdcardfs_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 	err = lower_vm_ops->fault(&lower_vma, vmf);
 	return err;
 }
-
+#ifdef CONFIG_AIO_OPTIMIZATION
+static ssize_t sdcardfs_direct_IO(int rw, struct kiocb *iocb,
+			      struct iov_iter *iter, loff_t offset)
+#else
 static ssize_t sdcardfs_direct_IO(int rw, struct kiocb *iocb,
 			      const struct iovec *iov, loff_t offset,
 			      unsigned long nr_segs)
+#endif
 {
 	/* 
 	 * This function returns zero on purpose in order to support direct IO.
