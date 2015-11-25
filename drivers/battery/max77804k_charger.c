@@ -14,6 +14,10 @@
 #include <linux/mfd/max77804k-private.h>
 #include <linux/of_gpio.h>
 
+#ifdef CONFIG_CHARGE_LEVEL
+#include <linux/charge_level.h>
+#endif
+
 #ifdef CONFIG_USB_HOST_NOTIFY
 #include <linux/host_notify.h>
 #endif
@@ -40,6 +44,17 @@
 #define SIOP_WIRELESS_INPUT_LIMIT_CURRENT 620
 #define SIOP_WIRELESS_CHARGING_LIMIT_CURRENT 680
 #define SLOW_CHARGING_CURRENT_STANDARD 400
+
+#ifdef CONFIG_CHARGE_LEVEL
+int ac_level = AC_CHARGE_LEVEL_DEFAULT;
+int usb_level = USB_CHARGE_LEVEL_DEFAULT;
+int wireless_level = WIRELESS_CHARGE_LEVEL_DEFAULT;
+
+char charge_info_text[30] = "";
+int charge_level_nom = 0;		// default is no charger connected
+int charge_level_cur = 0;
+int charge_stock_logic = 1;		// default is stock charging logic
+#endif
 
 struct max77804k_charger_data {
 	struct max77804k_dev	*max77804k;
@@ -922,6 +937,9 @@ static int sec_chg_get_property(struct power_supply *psy,
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		val->intval = max77804k_get_input_current(charger);
+#ifdef CONFIG_CHARGE_LEVEL
+		charge_level_cur = val->intval;
+#endif
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_TYPE:
 		if (!charger->is_charging)
@@ -1077,6 +1095,64 @@ static int sec_chg_set_property(struct power_supply *psy,
 				charger->pdata->charging_current[
 				val->intval].full_check_current_2nd);
 		}
+
+#ifdef CONFIG_CHARGE_LEVEL
+			charge_stock_logic = 1;
+			charge_level_nom = 9999;	// virtual charge rate for stock logic as we do not know the rate
+
+			switch(charger->cable_type)
+			{
+				case POWER_SUPPLY_TYPE_BATTERY:
+					charge_level_nom = 0;
+					sprintf(charge_info_text, "No charger");
+					break;
+					
+				case POWER_SUPPLY_TYPE_MAINS:
+					sprintf(charge_info_text, "AC charger");
+					if (ac_level != 0)
+					{
+						charge_stock_logic = 0;
+						charge_level_nom = ac_level;
+						set_charging_current = ac_level;
+						set_charging_current_max = ac_level;
+					}
+					break;
+
+				case POWER_SUPPLY_TYPE_USB:
+				case POWER_SUPPLY_TYPE_USB_DCP:
+				case POWER_SUPPLY_TYPE_USB_CDP:
+				case POWER_SUPPLY_TYPE_USB_ACA:
+				case POWER_SUPPLY_TYPE_CARDOCK:
+				case POWER_SUPPLY_TYPE_OTG:
+					sprintf(charge_info_text, "USB charger");
+					if (usb_level != 0)
+					{
+						charge_stock_logic = 0;
+						charge_level_nom = usb_level;
+						set_charging_current = usb_level;
+						set_charging_current_max = usb_level;
+					}
+					break;
+
+				case POWER_SUPPLY_TYPE_WIRELESS:
+					sprintf(charge_info_text, "Wireless charger");
+					if (wireless_level != 0)
+					{
+						charge_stock_logic = 0;
+						charge_level_nom = wireless_level;
+						set_charging_current = wireless_level;
+						set_charging_current_max = wireless_level;
+					}
+					break;
+
+				default:
+					sprintf(charge_info_text, "Unknown charger");
+					break;
+			}
+
+			pr_info("Boeffla-Kernel: charge level type: %s, stock logic: %d, nominal mA: %d\n", charge_info_text, charge_stock_logic, charge_level_nom);
+#endif
+
 		max77804k_set_charger_state(charger, charger->is_charging);
 		/* if battery full, only disable charging  */
 		if ((charger->status == POWER_SUPPLY_STATUS_CHARGING) ||
@@ -1115,6 +1191,10 @@ static int sec_chg_set_property(struct power_supply *psy,
 				val->intval);
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+#ifdef CONFIG_CHARGE_LEVEL
+		if (charge_stock_logic == 0)
+			break;
+#endif
 		charger->siop_level = val->intval;
 		if (charger->is_charging) {
 			/* decrease the charging current according to siop level */

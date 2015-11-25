@@ -4932,6 +4932,12 @@ config SEC_SMART_MGR_RUNQUEUE_AVG
 	  Support for Smart MGR function.
 endif
 
+config CHARGE_LEVEL
+	bool "Charge level interface"
+	default y
+	help
+	  Allows configuration of ac, usb and wireless charging levels
+
 config KERNEL_TEXT_MPU_PROT
         bool "Enable xpu protection of kernel r/o sections"
         help
