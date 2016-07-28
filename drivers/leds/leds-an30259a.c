@@ -11,6 +11,20 @@
  * the Free Software Foundation; version 2 of the License.
  *
  */
+
+/* Extended sysfs interface to allow LED fading control
+ *
+ * andip71, 28.07.2016
+ *
+ * SysFS interface :
+ * -----------------
+ *
+ * /sys/class/sec/led/led_fade (rw)
+ *
+ *   0 : blink (Samsung style)
+ *   1 : fade (CyanogenMod style)
+ */
+
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/module.h>
@@ -150,9 +164,11 @@ struct i2c_client *b_client;
 
 #ifdef SEC_LED_SPECIFIC
 struct device *led_dev;
+int led_enable_fade = 0; // default is without fading
 /*path : /sys/class/sec/led/led_pattern*/
 /*path : /sys/class/sec/led/led_blink*/
 /*path : /sys/class/sec/led/led_brightness*/
+/*path : /sys/class/sec/led/led_fade*/
 /*path : /sys/class/leds/led_r/brightness*/
 /*path : /sys/class/leds/led_g/brightness*/
 /*path : /sys/class/leds/led_b/brightness*/
@@ -373,24 +389,49 @@ static void an30259a_start_led_pattern(int mode)
 		pr_info("LED Battery Charging error Pattern on\n");
 		leds_on(LED_R, true, true,
 					LED_DYNAMIC_CURRENT);
-		leds_set_slope_mode(client, LED_R,
-				1, 15, 15, 0, 1, 1, 0, 0, 0, 0);
+
+		if (led_enable_fade == 1)
+		{
+			leds_set_slope_mode(client, LED_R,
+					1, 15, 7, 0, 1, 1, 1, 1, 1, 1);
+		}
+		else
+		{
+			leds_set_slope_mode(client, LED_R,
+					1, 15, 15, 0, 1, 1, 0, 0, 0, 0);
+		}
 		break;
 
 	case MISSED_NOTI:
 		pr_info("LED Missed Notifications Pattern on\n");
 		leds_on(LED_B, true, true,
 					LED_DYNAMIC_CURRENT);
-		leds_set_slope_mode(client, LED_B,
+		if (led_enable_fade == 1)
+		{
+			leds_set_slope_mode(client, LED_R,
+					1, 15, 7, 0, 1, 10, 1, 1, 1, 1);
+		}
+		else
+		{
+			leds_set_slope_mode(client, LED_B,
 					10, 15, 15, 0, 1, 10, 0, 0, 0, 0);
+		}
 		break;
 
 	case LOW_BATTERY:
 		pr_info("LED Low Battery Pattern on\n");
 		leds_on(LED_R, true, true,
 					LED_DYNAMIC_CURRENT);
-		leds_set_slope_mode(client, LED_R,
+		if (led_enable_fade == 1)
+		{
+			leds_set_slope_mode(client, LED_R,
+					1, 15, 7, 0, 1, 10, 1, 1, 1, 1);
+		}
+		else
+		{
+			leds_set_slope_mode(client, LED_B,
 					10, 15, 15, 0, 1, 10, 0, 0, 0, 0);
+		}
 		break;
 
 	case FULLY_CHARGED:
@@ -455,12 +496,24 @@ static void an30259a_set_led_blink(enum an30259a_led_enum led,
 	} else
 		leds_on(led, true, true, brightness);
 
-	leds_set_slope_mode(client, led, 0, 15, 15, 0,
-				(delay_on_time + AN30259A_TIME_UNIT - 1) /
-				AN30259A_TIME_UNIT,
-				(delay_off_time + AN30259A_TIME_UNIT - 1) /
-				AN30259A_TIME_UNIT,
-				0, 0, 0, 0);
+	if (led_enable_fade == 1)
+	{
+		leds_set_slope_mode(client, led, 0, 15, 7, 0,
+					(delay_on_time + AN30259A_TIME_UNIT - 1) /
+					AN30259A_TIME_UNIT,
+					(delay_off_time + AN30259A_TIME_UNIT - 1) /
+					AN30259A_TIME_UNIT,
+					1, 1, 1, 1);
+	}
+	else
+	{
+		leds_set_slope_mode(client, led, 0, 15, 15, 0,
+					(delay_on_time + AN30259A_TIME_UNIT - 1) /
+					AN30259A_TIME_UNIT,
+					(delay_off_time + AN30259A_TIME_UNIT - 1) /
+					AN30259A_TIME_UNIT,
+					0, 0, 0, 0);
+	}
 }
 
 static ssize_t store_an30259a_led_lowpower(struct device *dev,
@@ -570,6 +623,34 @@ static ssize_t store_an30259a_led_blink(struct device *dev,
 			led_brightness, LED_DYNAMIC_CURRENT);
 
 	return count;
+}
+
+
+static ssize_t show_an30259a_led_fade(struct device *dev,
+                    struct device_attribute *attr, char *buf)
+{
+	switch(led_enable_fade) {
+		case 0:		return sprintf(buf, "%d - LED fading is disabled\n", led_enable_fade);
+		case 1:		return sprintf(buf, "%d - LED fading is enabled\n", led_enable_fade);
+		default:	return sprintf(buf, "%d - LED fading is in undefined status\n", led_enable_fade);
+	}
+}
+
+static ssize_t store_an30259a_led_fade(struct device *dev,
+					struct device_attribute *devattr,
+					const char *buf, size_t count)
+{
+	int enabled = -1; /* default to not set a new value */
+
+	sscanf(buf, "%d", &enabled);
+
+	switch(enabled) { /* Accept only if 0 or 1 */
+		case 0:
+		case 1:
+			led_enable_fade = enabled;
+		default:
+			return count;
+	}
 }
 
 
@@ -735,6 +816,8 @@ static DEVICE_ATTR(led_pattern, 0664, NULL, \
 					store_an30259a_led_pattern);
 static DEVICE_ATTR(led_blink, 0664, NULL, \
 					store_an30259a_led_blink);
+static DEVICE_ATTR(led_fade, 0664, show_an30259a_led_fade, \
+					store_an30259a_led_fade);
 static DEVICE_ATTR(led_br_lev, 0664, NULL, \
 					store_an30259a_led_br_lev);
 static DEVICE_ATTR(led_lowpower, 0664, NULL, \
@@ -760,6 +843,7 @@ static struct attribute *sec_led_attributes[] = {
 	&dev_attr_led_b.attr,
 	&dev_attr_led_pattern.attr,
 	&dev_attr_led_blink.attr,
+	&dev_attr_led_fade.attr,
 	&dev_attr_led_br_lev.attr,
 	&dev_attr_led_lowpower.attr,
 	NULL,
@@ -956,6 +1040,22 @@ static int __devexit an30259a_remove(struct i2c_client *client)
 	struct an30259a_data *data = i2c_get_clientdata(client);
 	int i;
 	dev_dbg(&client->adapter->dev, "%s\n", __func__);
+
+	// this is not an ugly hack to shutdown led.
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_ON << 0);
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_ON << 1);
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_ON << 2);
+	data->shadow_reg[AN30259A_REG_LED1CNT2 + 0 * 4] &= ~AN30259A_MASK_DELAY;
+	data->shadow_reg[AN30259A_REG_LED1CNT2 + 1 * 4] &= ~AN30259A_MASK_DELAY;
+	data->shadow_reg[AN30259A_REG_LED1CNT2 + 2 * 4] &= ~AN30259A_MASK_DELAY;
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_SLOPE_MODE << 0);
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_SLOPE_MODE << 1);
+	data->shadow_reg[AN30259A_REG_LEDON] &= ~(LED_SLOPE_MODE << 2);
+	data->shadow_reg[AN30259A_REG_LED1CC + 0] = 0;
+	data->shadow_reg[AN30259A_REG_LED1CC + 1] = 0;
+	data->shadow_reg[AN30259A_REG_LED1CC + 2] = 0;
+	msleep(200);
+
 #ifdef SEC_LED_SPECIFIC
 	sysfs_remove_group(&led_dev->kobj, &sec_led_attr_group);
 #endif
