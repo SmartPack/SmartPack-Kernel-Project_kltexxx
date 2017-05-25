@@ -14,6 +14,9 @@
 #include <linux/err.h>
 #include <linux/fb.h>
 #include <linux/slab.h>
+#ifdef CONFIG_FB_MSM_MDSS
+#include <linux/lcd_notify.h>
+#endif
 
 #if defined(CONFIG_FB) || (defined(CONFIG_FB_MODULE) && \
 			   defined(CONFIG_LCD_CLASS_DEVICE_MODULE))
@@ -44,6 +47,21 @@ static int fb_notifier_callback(struct notifier_block *self,
 	mutex_lock(&ld->ops_lock);
 	if (!ld->ops->check_fb || ld->ops->check_fb(ld, evdata->info)) {
 		if (event == FB_EVENT_BLANK) {
+#ifdef CONFIG_FB_MSM_MDSS
+			// check if lcd has been switched on or off and call chain accordinly
+			if ((*(int *)evdata->data) & 0x04)
+			{
+				lcd_notifier_call_chain(LCD_EVENT_OFF_START, NULL);
+				lcd_notifier_call_chain(LCD_EVENT_OFF_END, NULL);
+				pr_debug("Boeffla-Kernel: lcd off");
+			}
+			else
+			{
+				lcd_notifier_call_chain(LCD_EVENT_ON_START, NULL);
+				lcd_notifier_call_chain(LCD_EVENT_ON_END, NULL);
+				pr_debug("Boeffla-Kernel: lcd on");
+			}
+#endif
 			if (ld->ops->set_power)
 				ld->ops->set_power(ld, *(int *)evdata->data);
 		} else {
