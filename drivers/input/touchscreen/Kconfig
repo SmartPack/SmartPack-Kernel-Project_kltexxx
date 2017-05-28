@@ -1152,6 +1152,13 @@ config TOUCHSCREEN_ZINITIX_BT531
 	  To compile this driver as a module, choose M here: the
 	  module will be called BT531.
 
+config TOUCHBOOST_CONTROL
+	bool "Touch boost control"
+	depends on INPUT_TOUCHSCREEN
+	help
+	  Boeffla Kernels functionality to control input boost as touch boost
+	  in the Boeffla Config app
+
 source "drivers/input/touchscreen/wacom/Kconfig"
 source "drivers/input/touchscreen/gt9xx/Kconfig"
 source "drivers/input/touchscreen/synaptics/Kconfig"
