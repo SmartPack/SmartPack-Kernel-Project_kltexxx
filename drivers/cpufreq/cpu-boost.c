@@ -45,13 +45,21 @@ static struct workqueue_struct *cpu_boost_wq;
 
 static struct work_struct input_boost_work;
 
+#ifdef CONFIG_TOUCHBOOST_CONTROL
+unsigned int input_boost_status = 1;
+#endif
+
 static unsigned int boost_ms;
 module_param(boost_ms, uint, 0644);
 
 static unsigned int sync_threshold;
 module_param(sync_threshold, uint, 0644);
 
+#ifdef CONFIG_TOUCHBOOST_CONTROL
+unsigned int input_boost_freq;
+#else
 static unsigned int input_boost_freq;
+#endif
 module_param(input_boost_freq, uint, 0644);
 
 static unsigned int input_boost_ms = 40;
@@ -228,7 +236,7 @@ static struct notifier_block boost_migration_nb = {
 
 static void do_input_boost(struct work_struct *work)
 {
-	unsigned int i, ret;
+	unsigned int i, ret, freq;
 	struct cpu_sync *i_sync_info;
 	struct cpufreq_policy policy;
 
@@ -239,11 +247,18 @@ static void do_input_boost(struct work_struct *work)
 		ret = cpufreq_get_policy(&policy, i);
 		if (ret)
 			continue;
-		if (policy.cur >= input_boost_freq)
+
+		// ensure, touch boost freq does never exceed max scaling freq
+		if (input_boost_freq > policy.max)
+			freq = policy.max;
+		else
+			freq = input_boost_freq;
+
+		if (policy.cur >= freq)
 			continue;
 
 		cancel_delayed_work_sync(&i_sync_info->input_boost_rem);
-		i_sync_info->input_boost_min = input_boost_freq;
+		i_sync_info->input_boost_min = freq;
 		cpufreq_update_policy(i);
 		queue_delayed_work_on(i_sync_info->cpu, cpu_boost_wq,
 			&i_sync_info->input_boost_rem,
@@ -256,6 +271,12 @@ static void cpuboost_input_event(struct input_handle *handle,
 		unsigned int type, unsigned int code, int value)
 {
 	u64 now;
+
+#ifdef CONFIG_TOUCHBOOST_CONTROL
+	// if touch boost (input boost) is switched off, do nothing
+	if (!input_boost_status)
+		return;
+#endif
 
 	if (!input_boost_freq)
 		return;
