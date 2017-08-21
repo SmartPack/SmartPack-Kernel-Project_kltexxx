@@ -51,12 +51,6 @@ config CPU_FREQ_LIMIT
 	help
 	  This driver supports API to limit CPU frequency.
 
-config CPU_INPUT_BOOST
-	bool "CPU Input Boost"
-	help
-	  Boosts the CPU on touchscreen and touchpad input. Boost frequencies and
-	  duration are configured via sysfs (/sys/kernel/cpu_input_boost/*).
-
 choice
 	prompt "Default CPUFreq governor"
 	default CPU_FREQ_DEFAULT_GOV_USERSPACE if CPU_FREQ_SA1100 || CPU_FREQ_SA1110
