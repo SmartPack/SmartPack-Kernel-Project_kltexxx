@@ -23,9 +23,9 @@ config IOSCHED_FIOPS
 	tristate "FIOPS I/O scheduler"
 	default y
 
-config IOSCHED_SIO
-	tristate "Simple I/O scheduler"
-	default n
+config IOSCHED_SIOPLUS
+	tristate "Simple I/O scheduler plus"
+	default y
 	---help---
 	  The Simple I/O scheduler is an extremely simple scheduler,
 	  based on noop and deadline, that relies on deadlines to
@@ -72,8 +72,8 @@ choice
 	config DEFAULT_FIOPS
 		bool "FIOPS" if IOSCHED_FIOPS=y
 
-	config DEFAULT_SIO
-		bool "SIO" if IOSCHED_SIO=y
+	config DEFAULT_SIOPLUS
+		bool "SIOPLUS" if IOSCHED_SIOPLUS=y
 
 	config DEFAULT_FIFO
 		bool "fifo"
@@ -84,7 +84,7 @@ config DEFAULT_IOSCHED
 	string
 	default "bfq" if DEFAULT_BFQ
 	default "noop" if DEFAULT_NOOP
-	default "sio" if DEFAULT_SIO
+	default "sioplus" if DEFAULT_SIOPLUS
 	default "fifo" if DEFAULT_FIFO
 	default "fiops" if DEFAULT_FIOPS
 
