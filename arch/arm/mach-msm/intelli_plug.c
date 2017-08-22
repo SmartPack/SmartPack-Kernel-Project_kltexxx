@@ -374,64 +374,6 @@ static void screen_off_limit(bool on)
 	}
 }
 
-void __ref intelli_plug_perf_boost(bool on)
-{
-	unsigned int cpu;
-
-	if (intelli_plug_active) {
-		flush_workqueue(intelliplug_wq);
-		if (on) {
-			for_each_possible_cpu(cpu) {
-				if (!cpu_online(cpu))
-					cpu_up(cpu);
-			}
-		} else {
-			queue_delayed_work_on(0, intelliplug_wq,
-				&intelli_plug_work,
-				msecs_to_jiffies(sampling_time));
-		}
-	}
-}
-
-/* sysfs interface for performance boost (BEGIN) */
-static ssize_t intelli_plug_perf_boost_store(struct kobject *kobj,
-			struct kobj_attribute *attr, const char *buf,
-			size_t count)
-{
-
-	int boost_req;
-
-	sscanf(buf, "%du", &boost_req);
-
-	switch(boost_req) {
-		case 0:
-			intelli_plug_perf_boost(0);
-			return count;
-		case 1:
-			intelli_plug_perf_boost(1);
-			return count;
-		default:
-			return -EINVAL;
-	}
-}
-
-static struct kobj_attribute intelli_plug_perf_boost_attribute =
-	__ATTR(perf_boost, 0220,
-		NULL,
-		intelli_plug_perf_boost_store);
-
-static struct attribute *intelli_plug_perf_boost_attrs[] = {
-	&intelli_plug_perf_boost_attribute.attr,
-	NULL,
-};
-
-static struct attribute_group intelli_plug_perf_boost_attr_group = {
-	.attrs = intelli_plug_perf_boost_attrs,
-};
-
-static struct kobject *intelli_plug_perf_boost_kobj;
-/* sysfs interface for performance boost (END) */
-
 #ifdef CONFIG_POWERSUSPEND
 static void intelli_plug_suspend(struct power_suspend *handler)
 #else
