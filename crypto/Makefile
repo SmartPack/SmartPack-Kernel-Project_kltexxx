@@ -7,7 +7,7 @@ obj-$(CONFIG_CRYPTO_FIPS) += first_file.o
 obj-$(CONFIG_CRYPTO_FIPS) += fips_integrity.o
 
 obj-$(CONFIG_CRYPTO) += crypto.o
-crypto-y := api.o cipher.o compress.o
+crypto-y := api.o cipher.o compress.o memneq.o
 
 obj-$(CONFIG_CRYPTO_WORKQUEUE) += crypto_wq.o
 
