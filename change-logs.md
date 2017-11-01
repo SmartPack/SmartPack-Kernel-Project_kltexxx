@@ -1,5 +1,9 @@
 # Change-logs
 
+## 36. Nov 1, 2017
+Stable release: v11
+Changes: Switched to UBERTC-8.0 (gcc-8) latest toolchain. Up-to-date with LOS kernel source code till date.
+
 ## 35. Oct 25, 2017
 Maintenance update: v10_r9
 Changes: Dynamic FSync is now enabled by default.Up-to-date with LOS kernel source code till date.
