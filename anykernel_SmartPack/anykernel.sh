@@ -41,8 +41,8 @@ is_slot_device=0;
 . /tmp/anykernel/tools/ak2-core.sh;
 
 
-## AnyKernel permissions
-# set permissions for included ramdisk files
+## AnyKernel file attributes
+# set permissions/ownership for included ramdisk files
 
 ## AnyKernel install
 dump_boot;
