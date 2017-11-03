@@ -7,7 +7,17 @@ COLOR_NEUTRAL="\033[0m"
 echo -e $COLOR_GREEN"\n SmartPack-Kernel Build Script\n"$COLOR_NEUTRAL
 #
 echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
-TOOLCHAIN="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
+
+# Toolchains
+
+GOOGLE="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
+
+UBERTC="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
+
+LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
+
+TOOLCHAIN="ubertc"	# Leave empty for using Google’s stock toolchain
+
 ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
@@ -23,7 +33,21 @@ COMPILE_DTB="y"
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 
 export ARCH=$ARCHITECTURE
-export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
+
+if [ -z "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using Google’s stock toolchain\n"$COLOR_NEUTRAL
+	export CROSS_COMPILE="${CCACHE} $GOOGLE"
+fi
+
+if [ "ubertc" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using UBERTC 8.x\n"$COLOR_NEUTRAL
+	export CROSS_COMPILE="${CCACHE} $UBERTC"
+fi
+
+if [ "linaro" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using Linaro GCC-7.x toolchain\n"$COLOR_NEUTRAL
+	export CROSS_COMPILE="${CCACHE} $LINARO"
+fi
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
@@ -34,7 +58,6 @@ if [ -z "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "klte" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	# creating backups
 	cp scripts/mkcompile_h release_SmartPack/
 	cp arch/arm/configs/lineage_klte_defconfig release_SmartPack/
@@ -94,7 +117,6 @@ if [ "klte" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "kltekor" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	# creating backups
 	cp scripts/mkcompile_h release_SmartPack/
 	cp arch/arm/configs/lineage_kltekor_defconfig release_SmartPack/
@@ -154,7 +176,6 @@ if [ "kltekor" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "klteduos" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	# creating backups
 	cp scripts/mkcompile_h release_SmartPack/
 	cp arch/arm/configs/lineage_klteduos_defconfig release_SmartPack/
@@ -214,7 +235,6 @@ if [ "klteduos" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "kltespr" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	# creating backups
 	cp scripts/mkcompile_h release_SmartPack/
 	cp arch/arm/configs/lineage_kltespr_defconfig release_SmartPack/
