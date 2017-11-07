@@ -1732,12 +1732,6 @@ int try_to_unmap(struct page *page, enum ttu_flags flags)
 	BUG_ON(!PageLocked(page));
 	VM_BUG_ON(!PageHuge(page) && PageTransHuge(page));
 
-	if (unlikely(PageKsm(page)))
-		ret = try_to_unmap_ksm(page, flags);
-	else if (PageAnon(page))
-		ret = try_to_unmap_anon(page, flags);
-	else
-		ret = try_to_unmap_file(page, flags);
 	if (ret != SWAP_MLOCK && !page_mapped(page))
 		ret = SWAP_SUCCESS;
 	return ret;
@@ -1763,10 +1757,6 @@ int try_to_munlock(struct page *page)
 	VM_BUG_ON(!PageLocked(page) || PageLRU(page));
 
 	if (unlikely(PageKsm(page)))
-		return try_to_unmap_ksm(page, TTU_MUNLOCK);
-	else if (PageAnon(page))
-		return try_to_unmap_anon(page, TTU_MUNLOCK);
-	else
 		return try_to_unmap_file(page, TTU_MUNLOCK);
 }
 
@@ -1849,10 +1839,6 @@ int rmap_walk(struct page *page, int (*rmap_one)(struct page *,
 	VM_BUG_ON(!PageLocked(page));
 
 	if (unlikely(PageKsm(page)))
-		return rmap_walk_ksm(page, rmap_one, arg);
-	else if (PageAnon(page))
-		return rmap_walk_anon(page, rmap_one, arg);
-	else
 		return rmap_walk_file(page, rmap_one, arg);
 }
 #endif /* CONFIG_MIGRATION */

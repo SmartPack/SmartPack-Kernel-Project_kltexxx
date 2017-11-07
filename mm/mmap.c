@@ -2761,6 +2761,7 @@ int install_special_mapping(struct mm_struct *mm,
 	ret = insert_vm_struct(mm, vma);
 	if (ret)
 		goto out;
+
 	mm->total_vm += len >> PAGE_SHIFT;
 
 	perf_event_mmap(vma);
