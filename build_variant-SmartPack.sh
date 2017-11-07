@@ -35,18 +35,18 @@ NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detecti
 export ARCH=$ARCHITECTURE
 
 if [ -z "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using Google’s stock toolchain\n"$COLOR_NEUTRAL
+	echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using Google's stock toolchain\n"$COLOR_NEUTRAL
 	export CROSS_COMPILE="${CCACHE} $GOOGLE"
-fi
-
-if [ "ubertc" == "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using UBERTC 8.x\n"$COLOR_NEUTRAL
-	export CROSS_COMPILE="${CCACHE} $UBERTC"
-fi
-
-if [ "linaro" == "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Building $KERNEL_NAME for $KERNEL_VARIANT using Linaro GCC-7.x toolchain\n"$COLOR_NEUTRAL
-	export CROSS_COMPILE="${CCACHE} $LINARO"
+else
+	if [ "ubertc" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using UBERTC-8.x\n"$COLOR_NEUTRAL
+		export CROSS_COMPILE="${CCACHE} $UBERTC"
+	else
+		if [ "linaro" == "$TOOLCHAIN" ]; then
+		echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using Linaro-7.x toolchain\n"$COLOR_NEUTRAL
+			export CROSS_COMPILE="${CCACHE} $LINARO"
+		fi
+	fi
 fi
 
 if [ -z "$NUM_CPUS" ]; then

@@ -33,22 +33,25 @@ NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detecti
 export ARCH=$ARCHITECTURE
 
 if [ -z "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Toolchain: Google's stock gcc-4.9.x\n"$COLOR_NEUTRAL
 	export CROSS_COMPILE="${CCACHE} $GOOGLE"
-fi
-
-if [ "ubertc" == "$TOOLCHAIN" ]; then
-	export CROSS_COMPILE="${CCACHE} $UBERTC"
-fi
-
-if [ "linaro" == "$TOOLCHAIN" ]; then
-	export CROSS_COMPILE="${CCACHE} $LINARO"
+else
+	if [ "ubertc" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Toolchain: UBERTC-8.x\n"$COLOR_NEUTRAL
+		export CROSS_COMPILE="${CCACHE} $UBERTC"
+	else
+		if [ "linaro" == "$TOOLCHAIN" ]; then
+		echo -e $COLOR_GREEN"\n Toolchain: Linaro-7.x\n"$COLOR_NEUTRAL
+			export CROSS_COMPILE="${CCACHE} $LINARO"
+		fi
+	fi
 fi
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
 fi
 
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME for kltekor\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltekor\n"$COLOR_NEUTRAL
 
 # creating backups
 cp scripts/mkcompile_h release_SmartPack/
@@ -108,7 +111,7 @@ else
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME for klte\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klte\n"$COLOR_NEUTRAL
 
 # creating backups
 cp scripts/mkcompile_h release_SmartPack/
@@ -168,7 +171,7 @@ else
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME for klteduos\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klteduos\n"$COLOR_NEUTRAL
 
 # creating backups
 cp scripts/mkcompile_h release_SmartPack/
@@ -228,7 +231,7 @@ else
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME for kltespr\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltespr\n"$COLOR_NEUTRAL
 
 # creating backups
 cp scripts/mkcompile_h release_SmartPack/
