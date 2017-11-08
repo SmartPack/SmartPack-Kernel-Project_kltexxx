@@ -8,7 +8,16 @@ echo -e $COLOR_GREEN"\n SmartPack-Kernel Build Script\n"$COLOR_NEUTRAL
 #
 echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 
-TOOLCHAIN="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
+# Toolchains
+
+GOOGLE="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
+
+UBERTC="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
+
+LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
+
+TOOLCHAIN="linaro"	# Leave empty for using Google’s stock toolchain
+
 ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
@@ -24,7 +33,21 @@ COMPILE_DTB="y"
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 
 export ARCH=$ARCHITECTURE
-export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
+
+if [ -z "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using Google's stock toolchain\n"$COLOR_NEUTRAL
+	export CROSS_COMPILE="${CCACHE} $GOOGLE"
+else
+	if [ "ubertc" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using UBERTC-8.x\n"$COLOR_NEUTRAL
+		export CROSS_COMPILE="${CCACHE} $UBERTC"
+	else
+		if [ "linaro" == "$TOOLCHAIN" ]; then
+		echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using Linaro-7.x toolchain\n"$COLOR_NEUTRAL
+			export CROSS_COMPILE="${CCACHE} $LINARO"
+		fi
+	fi
+fi
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
@@ -35,7 +58,6 @@ if [ -z "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "klte" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	if [ -e output_eur/.config ]; then
 		rm -f output_eur/.config
 		if [ -e output_eur/arch/arm/boot/zImage ]; then
@@ -82,7 +104,6 @@ if [ "klte" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "kltekor" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	if [ -e output_kor/.config ]; then
 		rm -f output_kor/.config
 		if [ -e output_kor/arch/arm/boot/zImage ]; then
@@ -129,7 +150,6 @@ if [ "kltekor" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "klteduos" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	if [ -e output_duos/.config ]; then
 		rm -f output_duos/.config
 		if [ -e output_duos/arch/arm/boot/zImage ]; then
@@ -176,7 +196,6 @@ if [ "klteduos" == "$KERNEL_VARIANT" ]; then
 fi
 
 if [ "kltespr" == "$KERNEL_VARIANT" ]; then
-	echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
 	if [ -e output_spr/.config ]; then
 		rm -f output_spr/.config
 		if [ -e output_spr/arch/arm/boot/zImage ]; then
