@@ -45,7 +45,7 @@ void *return_address(unsigned int);
 
 #else
 
-static inline void *return_address(unsigned int level)
+extern inline void *return_address(unsigned int level)
 {
 	return NULL;
 }
