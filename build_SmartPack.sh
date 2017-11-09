@@ -15,7 +15,7 @@ KERNEL_NAME="SmartPack-Kernel"
 
 KERNEL_VARIANT="kltekor"	# only one variant at a time
 
-KERNEL_VERSION="stable-v6"   # leave as such, if no specific version tag
+KERNEL_VERSION="stable-v7"   # leave as such, if no specific version tag
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
