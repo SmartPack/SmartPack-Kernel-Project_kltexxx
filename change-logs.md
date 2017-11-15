@@ -1,5 +1,9 @@
 # Change-logs
 
+## 37. Nov 16, 2017
+Stable release: v11_r1
+Changes: Switched to latest Linaro-7.2 (gcc-7.2) toolchain. Up-to-date with LOS kernel source code till date.
+
 ## 36. Nov 1, 2017
 Stable release: v11
 Changes: Switched to UBERTC-8.0 (gcc-8) latest toolchain. Up-to-date with LOS kernel source code till date.
