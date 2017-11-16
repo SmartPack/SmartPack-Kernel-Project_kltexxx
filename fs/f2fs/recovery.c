@@ -186,8 +186,6 @@ static void recover_inode(struct inode *inode, struct page *page)
 	inode->i_ctime.tv_nsec = le32_to_cpu(raw->i_ctime_nsec);
 	inode->i_mtime.tv_nsec = le32_to_cpu(raw->i_mtime_nsec);
 
-	F2FS_I(inode)->i_advise = raw->i_advise;
-
 	if (file_enc_name(inode))
 		name = "<encrypted>";
 	else
@@ -223,8 +221,7 @@ static bool is_same_inode(struct inode *inode, struct page *ipage)
 	return true;
 }
 
-static int find_fsync_dnodes(struct f2fs_sb_info *sbi, struct list_head *head,
-				bool check_only)
+static int find_fsync_dnodes(struct f2fs_sb_info *sbi, struct list_head *head)
 {
 	unsigned long long cp_ver = cur_cp_version(F2FS_CKPT(sbi));
 	struct curseg_info *curseg;
@@ -256,8 +253,7 @@ static int find_fsync_dnodes(struct f2fs_sb_info *sbi, struct list_head *head,
 			if (!is_same_inode(entry->inode, page))
 				goto next;
 		} else {
-			if (!check_only &&
-					IS_INODE(page) && is_dent_dnode(page)) {
+			if (IS_INODE(page) && is_dent_dnode(page)) {
 				err = recover_inode_page(sbi, page);
 				if (err)
 					break;
@@ -329,7 +325,7 @@ static int check_index_in_prev_nodes(struct f2fs_sb_info *sbi,
 		return 0;
 
 	/* Get the previous summary */
-	for (i = CURSEG_HOT_DATA; i <= CURSEG_COLD_DATA; i++) {
+	for (i = CURSEG_WARM_DATA; i <= CURSEG_COLD_DATA; i++) {
 		struct curseg_info *curseg = CURSEG_I(sbi, i);
 		if (curseg->segno == segno) {
 			sum = curseg->sum_blk->entries[blkoff];
@@ -418,9 +414,11 @@ static int do_recover_data(struct f2fs_sb_info *sbi, struct inode *inode,
 	if (IS_INODE(page)) {
 		recover_inline_xattr(inode, page);
 	} else if (f2fs_has_xattr_block(ofs_of_node(page))) {
-		err = recover_xattr_data(inode, page, blkaddr);
-		if (!err)
-			recovered++;
+		/*
+		 * Deprecated; xattr blocks should be found from cold log.
+		 * But, we should remain this for backward compatibility.
+		 */
+		recover_xattr_data(inode, page, blkaddr);
 		goto out;
 	}
 
@@ -460,10 +458,8 @@ static int do_recover_data(struct f2fs_sb_info *sbi, struct inode *inode,
 			continue;
 		}
 
-		if (!file_keep_isize(inode) &&
-			(i_size_read(inode) <= ((loff_t)start << PAGE_SHIFT)))
-			f2fs_i_size_write(inode,
-				(loff_t)(start + 1) << PAGE_SHIFT);
+		if ((start + 1) << PAGE_SHIFT > i_size_read(inode))
+			f2fs_i_size_write(inode, (start + 1) << PAGE_SHIFT);
 
 		/*
 		 * dest is reserved block, invalidate src block
@@ -510,10 +506,8 @@ err:
 	f2fs_put_dnode(&dn);
 out:
 	f2fs_msg(sbi->sb, KERN_NOTICE,
-		"recover_data: ino = %lx (i_size: %s) recovered = %d, err = %d",
-		inode->i_ino,
-		file_keep_isize(inode) ? "keep" : "recover",
-		recovered, err);
+		"recover_data: ino = %lx, recovered = %d blocks, err = %d",
+		inode->i_ino, recovered, err);
 	return err;
 }
 
@@ -604,7 +598,7 @@ int recover_fsync_data(struct f2fs_sb_info *sbi, bool check_only)
 	blkaddr = NEXT_FREE_BLKADDR(sbi, curseg);
 
 	/* step #1: find fsynced inode numbers */
-	err = find_fsync_dnodes(sbi, &inode_list, check_only);
+	err = find_fsync_dnodes(sbi, &inode_list);
 	if (err || list_empty(&inode_list))
 		goto out;
 

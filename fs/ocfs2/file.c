@@ -185,7 +185,7 @@ static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
 			      file->f_path.dentry->d_name.name,
 			      (unsigned long long)datasync);
 
-	err = file_write_and_wait_range(file, start, end);
+	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (err)
 		return err;
 

@@ -1319,7 +1319,7 @@ int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 		 */
 		return 0;
 
-	err = file_write_and_wait_range(file, start, end);
+	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (err)
 		return err;
 	mutex_lock(&inode->i_mutex);
