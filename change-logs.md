@@ -1,9 +1,12 @@
 # Change-logs
 
+## 14. November 23, 2017
+Stable release: v8
+CPU is over-clocked/undere-clocked into 2.8 GHz/268 MHz. 27 MHz additional GPU (idle) frequency cycle is added. Dynamic fsync is now enabled by default.
+
 ## 13. November 9, 2017
 Stable release: v7
-Merged with Samsung oscr (G900FXXS1CQH1). Simple GPU algorithm is replaced by Adreno_Idler (credits:arter97). zzmove CPUfreq gov (credits: zanezam) is updated to the latest. CPU input boost (credits: 
-sultanxda) is added.
+Merged with Samsung oscr (G900FXXS1CQH1). Simple GPU algorithm is replaced by Adreno_Idler (credits:arter97). zzmove CPUfreq gov (credits: zanezam) is updated to the latest. CPU input boost (credits: sultanxda) is added.
 
 ## 12. September 23, 2017
 One more update: v6
