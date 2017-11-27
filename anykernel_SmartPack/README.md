@@ -22,6 +22,7 @@ device.name3=toroplus
 
 block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
 is_slot_device=0;
+ramdisk_compression=auto;
 ```
 
 __do.devicecheck=1__ specified requires at least device.name1 to be present. This should match ro.product.device or ro.build.product for your device. There is support for up to 5 device.name# properties.
@@ -33,6 +34,8 @@ __do.cleanup=0__ will keep the zip from removing it's working directory in /tmp/
 __do.cleanuponabort=0__ will keep the zip from removing it's working directory in /tmp/anykernel in case of installation abort.
 
 `is_slot_device=1` enables detection of the suffix for the active boot partition on slot-based devices and will add this to the end of the supplied `block=` path.
+
+`ramdisk_compression=auto` allows automatically repacking the ramdisk with the format detected during unpack, changing `auto` to `gz`, `lzo`, `lzma`, `xz`, `bz2`, `lz4`, or `lz4-l` (for lz4 legacy) instead forces the repack as that format.
 
 ## // Command Methods ##
 ```
@@ -66,7 +69,7 @@ You may also use _ui_print "\<text\>"_ to write messages back to the recovery du
 
 ## // Binary Inclusion ##
 
-The AK2 repo includes my latest static ARM builds of `mkbootimg`, `unpackbootimg` and `busybox` by default to keep the basic package small. Builds for other architectures and optional binaries (see below) are available from my latest AIK-mobile and FlashIt packages, respectively, here:
+The AK2 repo includes my latest static ARM builds of `mkbootimg`, `unpackbootimg`,`busybox`, `xz` and `lz4` by default to keep the basic package small. Builds for other architectures and optional binaries (see below) are available from my latest AIK-mobile and FlashIt packages, respectively, here:
 
 https://forum.xda-developers.com/showthread.php?t=2073775 (Android Image Kitchen thread)  
 https://forum.xda-developers.com/showthread.php?t=2239421 (Odds and Ends thread)
@@ -74,13 +77,15 @@ https://forum.xda-developers.com/showthread.php?t=2239421 (Odds and Ends thread)
 Optional supported binaries which may be placed in /tools to enable built-in expanded functionality are as follows:
 * `mkbootfs` - for broken recoveries, or, booted flash support for a script or app via bind mounting to a /tmp directory
 * `flash_erase`, `nanddump`, `nandwrite` - MTD block device support for devices where the `dd` command is not sufficient
-* `pxa1088-unpackbootimg`, `pxa1088-mkbootimg` - Samsung/Marvell PXA1088 boot.img format variant support
+* `pxa-unpackbootimg`, `pxa-mkbootimg` - Samsung/Marvell PXA1088/PXA1908 boot.img format variant support
 * `dumpimage`, `mkimage` - DENX U-Boot uImage format support
 * `unpackelf` - Sony ELF kernel.elf format support, repacking as AOSP standard boot.img for unlocked bootloaders
 * `mkmtkhdr` - MTK device boot image section headers support
 * `futility` + `chromeos` test keys directory - Google ChromeOS signature support
 * `BootSignature_Android.jar` + `avb` keys directory - Google Android Verified Boot (AVB) signature support
 * `blobpack` - Asus SignBlob signature support
+* `dhtbsign` - Samsung/Spreadtrum DHTB signature support
+* `rkcrc` - Rockchip KRNL ramdisk image support
 
 ## // Instructions ##
 

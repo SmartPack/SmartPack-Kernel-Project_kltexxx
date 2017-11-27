@@ -1,5 +1,5 @@
 #
-# SmartPack-Kernel (AnyKernel) Script for aosp Roms
+# SmartPack-Kernel (AnyKernel) Script
 #
 # Credits: osm0sis @ xda-developers
 #
@@ -34,6 +34,7 @@ device.name15=
 # shell variables
 block=/dev/block/platform/msm_sdcc.1/by-name/boot;
 is_slot_device=0;
+ramdisk_compression=auto;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
@@ -41,8 +42,8 @@ is_slot_device=0;
 . /tmp/anykernel/tools/ak2-core.sh;
 
 
-## AnyKernel permissions
-# set permissions for included ramdisk files
+## AnyKernel file attributes
+# set permissions/ownership for included ramdisk files
 
 ## AnyKernel install
 dump_boot;
