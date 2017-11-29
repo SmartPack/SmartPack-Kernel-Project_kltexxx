@@ -1,5 +1,9 @@
 # Change-logs
 
+## 38. Nov 29, 2017
+Stable release: v11_r2
+Changes: Up-to-date with LOS kernel source code till date. Merged with all the latest patches from osm0sis's AnyKernel2 repo.
+
 ## 37. Nov 16, 2017
 Stable release: v11_r1
 Changes: Switched to latest Linaro-7.2 (gcc-7.2) toolchain. Up-to-date with LOS kernel source code till date.
