@@ -3986,8 +3986,32 @@ static struct regulator_ops qpnp_chg_batfet_vreg_ops = {
 	.is_enabled		= qpnp_chg_regulator_batfet_is_enabled,
 };
 
-#define CONSECUTIVE_COUNT	3
-#define VBATDET_MAX_ERR_MV	50
+#define MIN_DELTA_MV_TO_INCREASE_VDD_MAX	13
+#define MAX_DELTA_VDD_MAX_MV			30
+static void
+qpnp_chg_adjust_vddmax(struct qpnp_chg_chip *chip, int vbat_mv)
+{
+	int delta_mv, closest_delta_mv, sign;
+
+	delta_mv = chip->max_voltage_mv - vbat_mv;
+	if (delta_mv > 0 && delta_mv < MIN_DELTA_MV_TO_INCREASE_VDD_MAX) {
+		pr_debug("vbat is not low enough to increase vdd\n");
+		return;
+	}
+
+	sign = delta_mv > 0 ? 1 : -1;
+	closest_delta_mv = ((delta_mv + sign * QPNP_CHG_V_STEP_MV / 2)
+			/ QPNP_CHG_V_STEP_MV) * QPNP_CHG_V_STEP_MV;
+	pr_debug("max_voltage = %d, vbat_mv = %d, delta_mv = %d, closest = %d\n",
+			chip->max_voltage_mv, vbat_mv,
+			delta_mv, closest_delta_mv);
+	chip->delta_vddmax_mv = clamp(chip->delta_vddmax_mv + closest_delta_mv,
+			-MAX_DELTA_VDD_MAX_MV, MAX_DELTA_VDD_MAX_MV);
+	pr_debug("using delta_vddmax_mv = %d\n", chip->delta_vddmax_mv);
+	qpnp_chg_set_appropriate_vddmax(chip);
+}
+
+#define CONSECUTIVE_COUNT	10
 static void
 qpnp_eoc_work(struct work_struct *work)
 {
