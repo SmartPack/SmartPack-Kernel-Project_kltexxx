@@ -1,5 +1,9 @@
 # Change-logs
 
+## 15. December 2, 2017
+Stable release: v8_r1
+Lot of tweaks for the improved battery and performance. Fixed (hopefully) you-tube 60p videos lag and games.
+
 ## 14. November 23, 2017
 Stable release: v8
 CPU is over-clocked/undere-clocked into 2.8 GHz/268 MHz. 27 MHz additional GPU (idle) frequency cycle is added. Dynamic fsync is now enabled by default.
