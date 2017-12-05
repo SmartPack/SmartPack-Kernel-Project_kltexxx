@@ -1,5 +1,9 @@
 # Change-logs
 
+## 16. December 5, 2017
+Stable release: v9
+Implement initial support to f2fs (need testers). Added support to Kernel mode NEON. Added USB gadget support (now you can mount CD-ROMs). Arch Power is enabled. Gentle Fair Sleepers are disabled. BFQ-v7r5-3.4 ioscheduler is added. Massive code cleaning to improve the battery and performance. A lot more fixes and patches on various sides. Please visit my GitHub page for more details.
+
 ## 15. December 2, 2017
 Stable release: v8_r1
 Lot of tweaks for the improved battery and performance. Fixed (hopefully) you-tube 60p videos lag and games.
