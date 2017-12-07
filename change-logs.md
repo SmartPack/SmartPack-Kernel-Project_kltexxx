@@ -1,5 +1,9 @@
 # Change-logs
 
+## 39. Dec 07, 2017
+Stable release: v11_r3
+Massive code cleaning to improve (hopefully) the battery and performance. Up-to-date with Linage-OS source code.
+
 ## 38. Nov 29, 2017
 Stable release: v11_r2
 Changes: Up-to-date with LOS kernel source code till date. Merged with all the latest patches from osm0sis's AnyKernel2 repo.
