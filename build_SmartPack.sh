@@ -19,9 +19,24 @@
 # GNU General Public License for more details.
 #
 
+#
+# ***** ***** ***** ..How to use this script… ***** ***** ***** #
+#
+# For those who want to build this kernel using this script...
+#
+
+# 1. Properly locate your ‘TOOLCHAIN’ (Line# 38)
+# 2. Select the 'KERNEL_VARIANT' (Line# 44)
+# 3. Open Terminal, ‘cd’ to the Kernel ‘root’ folder and run ‘. build_SmartPack.sh’
+# 4. The output (anykernel zip) file will be generated in the ‘release_SmartPack’ folder
+# 5. Enjoy your new Kernel
+
+#
 # ***** ***** *Variables to be configured manually* ***** ***** #
+#
 
 TOOLCHAIN="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
+
 ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
@@ -44,7 +59,9 @@ COLOR_RED="\033[0;31m"
 COLOR_GREEN="\033[1;32m"
 COLOR_NEUTRAL="\033[0m"
 
+#
 # ***** ***** ***** ***** ***THE END*** ***** ***** ***** ***** #
+#
 
 export ARCH=$ARCHITECTURE
 export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
