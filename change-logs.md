@@ -1,5 +1,9 @@
 # Change-logs
 
+## 17. December 10, 2017
+Stable release: v9_r1
+Linux Kernel version is updated to 3.4.45 which includes more than 2000 commits from the mainstream Linux. Removed f2fs support.
+
 ## 16. December 5, 2017
 Stable release: v9
 Implement initial support to f2fs (need testers). Added support to Kernel mode NEON. Added USB gadget support (now you can mount CD-ROMs). Arch Power is enabled. Gentle Fair Sleepers are disabled. BFQ-v7r5-3.4 ioscheduler is added. Massive code cleaning to improve the battery and performance. A lot more fixes and patches on various sides. Please visit my GitHub page for more details.
