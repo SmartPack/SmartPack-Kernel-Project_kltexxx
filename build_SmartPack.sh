@@ -19,6 +19,22 @@
 # GNU General Public License for more details.
 #
 
+#
+# ***** ***** ***** ..How to use this script… ***** ***** ***** #
+#
+# For those who want to build this kernel using this script…
+#
+# Please note: this script is by-default designed to build all 
+# the supported variants one after another.
+#
+
+# 1. Properly locate Stock, UBER & Linaro toolchains (Line# 42, 44 & 46)
+# 2. Select the preferred toolchain for building (Line# 48)
+# 3. Open Terminal, ‘cd’ to the Kernel ‘root’ folder and run ‘. build_variant-SmartPack.sh’
+# 4. The output (anykernel zip) file will be generated in the ‘release_SmartPack’ folder
+# 5. Enjoy your new Kernel
+
+#
 # ***** ***** *Variables to be configured manually* ***** ***** #
 
 # Toolchains
