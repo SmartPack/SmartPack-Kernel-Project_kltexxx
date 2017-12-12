@@ -81,7 +81,6 @@ int dummy_ipv6_chk_addr(struct net *net, const struct in6_addr *addr,
 
 int __init pingv6_init(void)
 {
-	pingv6_ops.ipv6_recv_error = ipv6_recv_error;
 	pingv6_ops.datagram_recv_ctl = datagram_recv_ctl;
 	pingv6_ops.icmpv6_err_convert = icmpv6_err_convert;
 	pingv6_ops.ipv6_icmp_error = ipv6_icmp_error;
