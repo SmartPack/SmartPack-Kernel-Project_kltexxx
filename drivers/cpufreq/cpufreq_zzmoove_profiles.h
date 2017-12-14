@@ -2163,9 +2163,9 @@ struct zzmoove_profile zzmoove_profiles[] = {
 		0,		// auto_adjust_freq_thresholds
 #endif /* ENABLE_AUTO_ADJUST_FREQ */
 #ifdef ENABLE_HOTPLUGGING
-		0,		// disable_hotplug
+		1,		// disable_hotplug
 #if defined(CONFIG_HAS_EARLYSUSPEND) || defined(CONFIG_POWERSUSPEND) || defined(USE_LCD_NOTIFIER)
-		0,		// disable_hotplug_sleep
+		1,		// disable_hotplug_sleep
 #endif /* defined(CONFIG_HAS_EARLYSUSPEND)... */
 #endif /* ENABLE_HOTPLUGGING */
 		50,		// down_threshold
@@ -2338,9 +2338,9 @@ struct zzmoove_profile zzmoove_profiles[] = {
 		0,		// auto_adjust_freq_thresholds
 #endif /* ENABLE_AUTO_ADJUST_FREQ */
 #ifdef ENABLE_HOTPLUGGING
-		0,		// disable_hotplug
+		1,		// disable_hotplug
 #if defined(CONFIG_HAS_EARLYSUSPEND) || defined(CONFIG_POWERSUSPEND) || defined(USE_LCD_NOTIFIER)
-		0,		// disable_hotplug_sleep
+		1,		// disable_hotplug_sleep
 #endif /* defined(CONFIG_HAS_EARLYSUSPEND)... */
 #endif /* ENABLE_HOTPLUGGING */
 		0,		// down_threshold
