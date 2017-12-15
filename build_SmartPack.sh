@@ -28,8 +28,7 @@
 # 1. Properly locate your ‘TOOLCHAIN’ (Line# 38)
 # 2. Select the 'KERNEL_VARIANT' (Line# 44)
 # 3. Open Terminal, ‘cd’ to the Kernel ‘root’ folder and run ‘. build_SmartPack.sh’
-# 4. The output (anykernel zip) file will be generated in the ‘release_SmartPack’ folder
-# 5. Enjoy your new Kernel
+# 4. Enjoy your new Kernel
 
 #
 # ***** ***** *Variables to be configured manually* ***** ***** #
@@ -42,8 +41,6 @@ ARCHITECTURE="arm"
 KERNEL_NAME="SmartPack-Kernel"
 
 KERNEL_VARIANT="kltekor"	# only one variant at a time
-
-KERNEL_VERSION="stable-v9_r1"   # leave as such, if no specific version tag
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
@@ -85,8 +82,6 @@ else
 		fi
 		make -C $(pwd) O=output_$KERNEL_VARIANT $KERNEL_DEFCONFIG VARIANT_DEFCONFIG=$VARIANT_DEFCONFIG SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_$KERNEL_VARIANT
 		if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
-			echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
-			cp output_$KERNEL_VARIANT/arch/arm/boot/zImage anykernel_SmartPack/
 			# compile dtb if required
 			if [ "y" == "$COMPILE_DTB" ]; then
 				echo -e $COLOR_GREEN"\n compiling device tree blob (dtb)\n"$COLOR_NEUTRAL
@@ -95,27 +90,9 @@ else
 				fi
 				chmod 777 tools/dtbToolCM
 				tools/dtbToolCM -2 -o output_$KERNEL_VARIANT/arch/arm/boot/dt.img -s 2048 -p output_$KERNEL_VARIANT/scripts/dtc/ output_$KERNEL_VARIANT/arch/arm/boot/
-				# removing old dtb (if any)
-				if [ -f anykernel_SmartPack/dtb ]; then
-					rm -f anykernel_SmartPack/dtb
-				fi
-				# copying generated dtb to anykernel directory
-				if [ -e output_$KERNEL_VARIANT/arch/arm/boot/dt.img ]; then
-					mv -f output_$KERNEL_VARIANT/arch/arm/boot/dt.img anykernel_SmartPack/dtb
-				fi
 			fi
-			echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
-			cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
-			echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
-			rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
-			if [ -f anykernel_SmartPack/dtb ]; then
-				rm -f anykernel_SmartPack/dtb
-			fi
-			echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
+			echo -e $COLOR_GREEN"\n everything done...\n"$COLOR_NEUTRAL
 		else
-			if [ -f anykernel_SmartPack/dtb ]; then
-				rm -f anykernel_SmartPack/dtb
-			fi
 			echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 		fi
 	else
