@@ -1,5 +1,9 @@
 # Change-logs
 
+## 18. December 16, 2017
+Stable release: v10
+Linux Kernel version is updated to latest (3.4.113). Wifi issues should be now fixed.
+
 ## 17. December 10, 2017
 Stable release: v9_r1
 Linux Kernel version is updated to 3.4.45 which includes more than 2000 commits from the mainstream Linux. Removed f2fs support.
