@@ -49,6 +49,11 @@ ramdisk_compression=auto;
 dump_boot;
 
 # begin ramdisk changes
+backup_file default.prop;
+replace_string default.prop "persist.sys.usb.config=mtp,adb" "persist.sys.usb.config=mtp" "persist.sys.usb.config=mtp,adb";
+insert_line default.prop "ro.config.knox=0" after "persist.sys.usb.config" "ro.config.knox=0";
+insert_line default.prop "ro.config.tima=0" after "persist.sys.usb.config" "ro.config.tima=0";
+insert_line default.prop "ro.securestorage.support=false" after "persist.sys.usb.config" "ro.securestorage.support=false";
 
 # init.rc
 
