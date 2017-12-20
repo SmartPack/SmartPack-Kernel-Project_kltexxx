@@ -55,9 +55,6 @@ static struct workqueue_struct *intelliplug_boost_wq;
 static unsigned int intelli_plug_active = 0;
 module_param(intelli_plug_active, uint, 0664);
 
-static unsigned int touch_boost_active = 0;
-module_param(touch_boost_active, uint, 0664);
-
 static unsigned int nr_run_profile_sel = 0;
 module_param(nr_run_profile_sel, uint, 0664);
 
@@ -207,9 +204,8 @@ static void __ref intelli_plug_boost_fn(struct work_struct *work)
 	int nr_cpus = num_online_cpus();
 
 	if (intelli_plug_active)
-		if (touch_boost_active)
-			if (nr_cpus < 2)
-				cpu_up(1);
+		if (nr_cpus < 2)
+			cpu_up(1);
 }
 
 /*
