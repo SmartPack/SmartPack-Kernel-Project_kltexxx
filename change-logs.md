@@ -1,5 +1,9 @@
 # Change-logs
 
+## 41. Dec 21, 2017
+Stable release: v11_r5
+Added Lazyplug, a modified version of Intelli_plug (credits: arter97). Set uksm default sleep time to 1000 ms in order to improve battery life (credits: Saber). Up-to-date with Linage-OS source code.
+
 ## 40. Dec 14, 2017
 Stable release: v11_r4
 Native zzmove hot-plugging is enabled. Up-to-date with Linage-OS source code.
