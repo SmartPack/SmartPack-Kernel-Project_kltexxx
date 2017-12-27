@@ -26,8 +26,8 @@ device.name9=kltekor
 device.name10=klteskt
 device.name11=kltektt
 device.name12=kltelgt
-device.name13=
-device.name14=
+device.name13=kltejpn
+device.name14=kltekdi
 device.name15=
 } # end properties
 
