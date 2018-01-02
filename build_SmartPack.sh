@@ -46,7 +46,7 @@ UBERTC="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
 
 LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
 
-TOOLCHAIN=""	# Leave empty for using Google’s stock toolchain
+TOOLCHAIN="linaro"	# Leave empty for using Google’s stock toolchain
 
 ARCHITECTURE="arm"
 
