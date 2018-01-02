@@ -1,5 +1,9 @@
 # Change-logs
 
+## 19. January 03, 2018
+Stable release: v10_r1
+Added Lazyplug (credits: arter97) as a replacement to intelli_plug. Enabled zzmove native hotplugging. Extend UKSM sleep interval into 1000 ms (credits: Saber). Enabled BFQ.
+
 ## 18. December 16, 2017
 Stable release: v10
 Linux Kernel version is updated to latest (3.4.113). Wifi issues should be now fixed.
