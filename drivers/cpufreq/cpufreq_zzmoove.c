@@ -143,7 +143,7 @@ static char custom_profile[20] = "custom";			// ZZ: name to show in sysfs if any
 
 // ZZ: hotplug-switch, -block, -idle, -limit and scaling-block, -fastdown, -responiveness, -proportional tuneable defaults
 #ifdef ENABLE_HOTPLUGGING
-#define DEF_DISABLE_HOTPLUG				(0)	// ZZ: default hotplug switch
+#define DEF_DISABLE_HOTPLUG				(1)	// ZZ: default hotplug switch
 #define DEF_HOTPLUG_BLOCK_UP_CYCLES			(0)	// ZZ: default hotplug up block cycles
 #define DEF_HOTPLUG_BLOCK_DOWN_CYCLES			(0)	// ZZ: default hotplug down block cycles
 #define DEF_BLOCK_UP_MULTIPLIER_HOTPLUG1		(0)	// ff: default hotplug up block multiplier for core 2
@@ -216,7 +216,7 @@ static char custom_profile[20] = "custom";			// ZZ: name to show in sysfs if any
 #define DEF_FAST_SCALING_SLEEP_DOWN			(0)	// Yank: default fast scaling sleep for downscaling
 #define DEF_FREQ_LIMIT_SLEEP				(0)	// ZZ: default freq limit sleep
 #ifdef ENABLE_HOTPLUGGING
-#define DEF_DISABLE_HOTPLUG_SLEEP			(0)	// ZZ: default hotplug sleep switch
+#define DEF_DISABLE_HOTPLUG_SLEEP			(1)	// ZZ: default hotplug sleep switch
 #endif /* ENABLE_HOTPLUGGING */
 #endif /* (defined(CONFIG_HAS_EARLYSUSPEND)... */
 
