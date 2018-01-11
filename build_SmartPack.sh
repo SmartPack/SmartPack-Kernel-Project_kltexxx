@@ -51,7 +51,7 @@ ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
 
-KERNEL_VERSION="stable-v11_r6"   # leave as such, if no specific version tag
+KERNEL_VERSION="stable-v11_r7"   # leave as such, if no specific version tag
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 

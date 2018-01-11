@@ -1,5 +1,10 @@
 # Change-logs
 
+## 43. jan 11, 2018
+Stable release: v11_r7
+Few more updates to Lazyplug from the mainstream. Added USB gadget (Keyboard) support.
+[App](https://play.google.com/store/apps/details?id=remote.hid.keyboard.client)
+
 ## 42. Dec 28, 2017
 Stable release: v11_r6
 Fixed Lazy_plug issues. intelli_plug is removed.
