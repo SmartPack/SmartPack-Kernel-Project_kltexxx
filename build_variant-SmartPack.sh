@@ -97,11 +97,8 @@ else
 	if [ -e arch/arm/configs/$KERNEL_DEFCONFIG ]; then
 		# creating backups
 		cp scripts/mkcompile_h release_SmartPack/
-		cp arch/arm/configs/$KERNEL_DEFCONFIG release_SmartPack/
 		# updating kernel name
 		sed -i "s;SmartPack-Kernel;$KERNEL_NAME-$KERNEL_VARIANT;" scripts/mkcompile_h;
-		# updating kernel version
-		sed -i "s;stable;-$KERNEL_VERSION;" arch/arm/configs/$KERNEL_DEFCONFIG;
 		if [ -e output_$KERNEL_VARIANT/.config ]; then
 			rm -f output_$KERNEL_VARIANT/.config
 			if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
@@ -110,7 +107,10 @@ else
 		else
 			mkdir output_$KERNEL_VARIANT
 		fi
-		make -C $(pwd) O=output_$KERNEL_VARIANT $KERNEL_DEFCONFIG && make -j$NUM_CPUS -C $(pwd) O=output_$KERNEL_VARIANT
+		make -C $(pwd) O=output_$KERNEL_VARIANT $KERNEL_DEFCONFIG
+		# updating kernel version
+		sed -i "s;stable;-$KERNEL_VERSION;" output_$KERNEL_VARIANT/.config;
+		make -j$NUM_CPUS -C $(pwd) O=output_$KERNEL_VARIANT
 		if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
 			echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
 			cp output_$KERNEL_VARIANT/arch/arm/boot/zImage anykernel_SmartPack/
@@ -140,7 +140,6 @@ else
 			fi
 			# restoring backups
 			mv release_SmartPack/mkcompile_h scripts/
-			mv release_SmartPack/$KERNEL_DEFCONFIG arch/arm/configs/
 			echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 		else
 			if [ -f anykernel_SmartPack/dtb ]; then
@@ -148,7 +147,6 @@ else
 			fi
 			# restoring backups
 			mv release_SmartPack/mkcompile_h scripts/
-			mv release_SmartPack/$KERNEL_DEFCONFIG arch/arm/configs/
 			echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 		fi
 	else
