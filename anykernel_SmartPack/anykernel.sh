@@ -44,6 +44,7 @@ ramdisk_compression=auto;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
+chmod -R 755 $ramdisk
 
 ## AnyKernel install
 dump_boot;
@@ -51,6 +52,8 @@ dump_boot;
 # begin ramdisk changes
 
 # init.rc
+backup_file init.rc;
+grep "import /init.SmartPack.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.SmartPack.rc\n&/' init.rc
 
 # init.tuna.rc
 
