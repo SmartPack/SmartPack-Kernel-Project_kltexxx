@@ -1,5 +1,9 @@
 # Change-logs
 
+## 44. jan 18, 2018
+Stable release: v12
+Fixed simple_ondemand crashing. Added blu_Active cpufreq gov. Some fine tunings to Nightmare cpufreq gov. A lot of patches and improvements in many other places including cpufreq, scheds etc. from upstream linux. Introduced *SmartPack* boot script, which will be used for various purpose (used for properly activating cpu_input_boost at this moment). Increased default read ahead size & tcp output window. Merged recent changes from osmosis anykernel repo. Up-to-date with Linage-OS source code.
+
 ## 43. jan 11, 2018
 Stable release: v11_r7
 Few more updates to Lazyplug from the mainstream. Added USB gadget (Keyboard) support.
