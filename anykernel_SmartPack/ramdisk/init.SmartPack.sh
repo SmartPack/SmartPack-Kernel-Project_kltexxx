@@ -29,6 +29,24 @@ echo 1400 > /sys/kernel/cpu_input_boost/ib_duration_ms
 echo 1 > /sys/kernel/cpu_input_boost/enabled
 
 #
+# Disable mpdecision & enable Lazyplug
+#
+stop mpdecision
+echo 1 > /sys/module/lazyplug/parameters/lazyplug_active
+
+#
+# Enable Adreno_idler
+#
+echo 1 > /sys/module/adreno_idler/parameters/adreno_idler_active
+
+#
+# Enable intelli_thermal
+#
+echo 0 > /sys/module/msm_thermal/vdd_restriction/enabled
+echo 0 > /sys/module/msm_thermal/core_control/enabled
+echo Y > /sys/module/msm_thermal/parameters/enabled
+
+#
 # Done!
 #
 echo "Everything done" | tee /dev/kmsg
