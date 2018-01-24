@@ -95,10 +95,12 @@ cp scripts/mkcompile_h release_SmartPack/
 
 sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltekor;" scripts/mkcompile_h;
 
-if [ -e output_kltekor/.config ]; then
-	rm -f output_kltekor/.config
-	if [ -e output_kltekor/arch/arm/boot/zImage ]; then
-		rm -f output_kltekor/arch/arm/boot/zImage
+if [ -e output_kltekor/ ]; then
+	if [ -e output_kltekor/.config ]; then
+		rm -f output_kltekor/.config
+		if [ -e output_kltekor/arch/arm/boot/zImage ]; then
+			rm -f output_kltekor/arch/arm/boot/zImage
+		fi
 	fi
 else
 mkdir output_kltekor
@@ -153,10 +155,12 @@ cp scripts/mkcompile_h release_SmartPack/
 
 sed -i "s;SmartPack-Kernel;$KERNEL_NAME-klte;" scripts/mkcompile_h;
 
-if [ -e output_klte/.config ]; then
-	rm -f output_klte/.config
-	if [ -e output_klte/arch/arm/boot/zImage ]; then
-		rm -f output_klte/arch/arm/boot/zImage
+if [ -e output_klte/ ]; then
+	if [ -e output_klte/.config ]; then
+		rm -f output_klte/.config
+		if [ -e output_klte/arch/arm/boot/zImage ]; then
+			rm -f output_klte/arch/arm/boot/zImage
+		fi
 	fi
 else
 mkdir output_klte
@@ -211,10 +215,12 @@ cp scripts/mkcompile_h release_SmartPack/
 
 sed -i "s;SmartPack-Kernel;$KERNEL_NAME-klteduos;" scripts/mkcompile_h;
 
-if [ -e output_klteduos/.config ]; then
-	rm -f output_klteduos/.config
-	if [ -e output_klteduos/arch/arm/boot/zImage ]; then
-		rm -f output_klteduos/arch/arm/boot/zImage
+if [ -e output_klteduos/ ]; then
+	if [ -e output_klteduos/.config ]; then
+		rm -f output_klteduos/.config
+		if [ -e output_klteduos/arch/arm/boot/zImage ]; then
+			rm -f output_klteduos/arch/arm/boot/zImage
+		fi
 	fi
 else
 mkdir output_klteduos
@@ -269,10 +275,12 @@ cp scripts/mkcompile_h release_SmartPack/
 
 sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltespr;" scripts/mkcompile_h;
 
-if [ -e output_kltespr/.config ]; then
-	rm -f output_kltespr/.config
-	if [ -e output_kltespr/arch/arm/boot/zImage ]; then
-		rm -f output_kltespr/arch/arm/boot/zImage
+if [ -e output_kltespr/ ]; then
+	if [ -e output_kltespr/.config ]; then
+		rm -f output_kltespr/.config
+		if [ -e output_kltespr/arch/arm/boot/zImage ]; then
+			rm -f output_kltespr/arch/arm/boot/zImage
+		fi
 	fi
 else
 mkdir output_kltespr
