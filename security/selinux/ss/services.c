@@ -770,15 +770,12 @@ out:
 	kfree(n);
 	kfree(t);
 
-#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
- 	return -EPERM;
-#elif defined(CONFIG_SECURITY_SELINUX_NEVER_ENFORCE)
- 	return 0;
-#else
-  	if (!selinux_enforcing)
-  		return 0;
-  	return -EPERM;
+#ifdef CONFIG_ALWAYS_ENFORCE
+	selinux_enforcing = 1;
 #endif
+	if (!selinux_enforcing)
+		return 0;
+	return -EPERM;
 }
 
 int security_validate_transition(u32 oldsid, u32 newsid, u32 tasksid,
@@ -1524,15 +1521,12 @@ out:
 	kfree(s);
 	kfree(t);
 	kfree(n);
-#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
- 	return -EACCES;
-#elif defined(CONFIG_SECURITY_SELINUX_NEVER_ENFORCE)
-	return 0;
-#else
-  	if (!selinux_enforcing)
-  		return 0;
-  	return -EACCES;
+#ifdef CONFIG_ALWAYS_ENFORCE
+        selinux_enforcing = 1;
 #endif
+	if (!selinux_enforcing)
+		return 0;
+	return -EACCES;
 }
 
 static void filename_compute_type(struct policydb *p, struct context *newcontext,
@@ -1820,12 +1814,11 @@ static inline int convert_context_handle_invalid_context(struct context *context
 {
 	char *s;
 	u32 len;
-#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
-	return -EINVAL;
-#elif !defined(CONFIG_SECURITY_SELINUX_NEVER_ENFORCE)
-  	if (selinux_enforcing)
-  		return -EINVAL;
+#ifdef CONFIG_ALWAYS_ENFORCE
+        selinux_enforcing = 1;
 #endif
+	if (selinux_enforcing)
+		return -EINVAL;
 
 	if (!context_struct_to_string(context, &s, &len)) {
 		printk(KERN_WARNING "SELinux:  Context %s would be invalid if enforcing\n", s);

@@ -174,7 +174,7 @@ static ssize_t sel_write_enforce(struct file *file, const char __user *buf,
 	length = -EINVAL;
 	if (sscanf(page, "%d", &new_value) != 1)
 		goto out;
-#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
+#ifdef CONFIG_ALWAYS_ENFORCE
 	// If build is user build and enforce option is set, selinux is always enforcing
 	new_value = 1;
 	length = task_has_security(current, SECURITY__SETENFORCE);
@@ -187,18 +187,6 @@ static ssize_t sel_write_enforce(struct file *file, const char __user *buf,
 	avc_ss_reset(0);
 	selnl_notify_setenforce(new_value);
         selinux_status_update_setenforce(new_value);
-#elif defined(CONFIG_SECURITY_SELINUX_NEVER_ENFORCE)
- 	// Oh no you didn't :3
- 	new_value = 0;
- 	length = task_has_security(current, SECURITY__SETENFORCE);
- 	audit_log(current->audit_context, GFP_KERNEL, AUDIT_MAC_STATUS,
-                         "config_never_enforce - true; enforcing=%d old_enforcing=%d auid=%u ses=%u",
-                         new_value, selinux_enforcing,
-                         audit_get_loginuid(current),
-                         audit_get_sessionid(current));
- 	selinux_enforcing = new_value;
- 	selnl_notify_setenforce(new_value);
-         selinux_status_update_setenforce(new_value);
 #else
 	if (new_value != selinux_enforcing) {
 		length = task_has_security(current, SECURITY__SETENFORCE);
@@ -1859,7 +1847,7 @@ static int sel_fill_super(struct super_block *sb, void *data, int silent)
 
 	static struct tree_descr selinux_files[] = {
 		[SEL_LOAD] = {"load", &sel_load_ops, S_IRUSR|S_IWUSR},
-		[SEL_ENFORCE] = {"enforce", &sel_enforce_ops, S_IRUSR|S_IWUSR|S_IRGRP},
+		[SEL_ENFORCE] = {"enforce", &sel_enforce_ops, S_IRUGO|S_IWUSR},
 		[SEL_CONTEXT] = {"context", &transaction_ops, S_IRUGO|S_IWUGO},
 		[SEL_ACCESS] = {"access", &transaction_ops, S_IRUGO|S_IWUGO},
 		[SEL_CREATE] = {"create", &transaction_ops, S_IRUGO|S_IWUGO},
@@ -1967,12 +1955,11 @@ static int __init init_sel_fs(void)
 {
 	int err;
 
-#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
+#ifdef CONFIG_ALWAYS_ENFORCE
 	selinux_enabled = 1;
-#else
-  	if (!selinux_enabled)
-  		return 0;
 #endif
+	if (!selinux_enabled)
+		return 0;
 
 	selinuxfs_kobj = kobject_create_and_add("selinux", fs_kobj);
 	if (!selinuxfs_kobj)
