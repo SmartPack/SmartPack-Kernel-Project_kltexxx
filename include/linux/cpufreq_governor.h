@@ -71,21 +71,6 @@ __ATTR(_name, 0644, show_##_name##_gov_pol, store_##_name##_gov_pol)
 	gov_sys_attr_ro(_name);						\
 	gov_pol_attr_ro(_name)
 
-#define store_one(_gov, file_name)					\
-static ssize_t store_##file_name##_gov_sys				\
-(struct kobject *kobj, struct attribute *attr, const char *buf, size_t count) \
-{									\
-	struct dbs_data *dbs_data = _gov##_dbs_cdata.gdbs_data;		\
-	return store_##file_name(dbs_data, buf, count);			\
-}									\
-									\
-static ssize_t store_##file_name##_gov_pol				\
-(struct cpufreq_policy *policy, const char *buf, size_t count)		\
-{									\
-	struct dbs_data *dbs_data = policy->governor_data;		\
-	return store_##file_name(dbs_data, buf, count);			\
-}
-
 #define show_store_one(_gov, file_name)					\
 show_one(_gov, file_name);						\
 store_one(_gov, file_name)
