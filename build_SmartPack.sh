@@ -99,10 +99,12 @@ else
 		cp scripts/mkcompile_h release_SmartPack/
 		# updating kernel name
 		sed -i "s;SmartPack-Kernel;$KERNEL_NAME-$KERNEL_VARIANT;" scripts/mkcompile_h;
-		if [ -e output_$KERNEL_VARIANT/.config ]; then
-			rm -f output_$KERNEL_VARIANT/.config
-			if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
-				rm -f output_$KERNEL_VARIANT/arch/arm/boot/zImage
+		if [ -e output_$KERNEL_VARIANT/ ]; then
+			if [ -e output_$KERNEL_VARIANT/.config ]; then
+				rm -f output_$KERNEL_VARIANT/.config
+				if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
+					rm -f output_$KERNEL_VARIANT/arch/arm/boot/zImage
+				fi
 			fi
 		else
 			mkdir output_$KERNEL_VARIANT
