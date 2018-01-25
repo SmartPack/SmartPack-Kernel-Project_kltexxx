@@ -44,6 +44,7 @@ ramdisk_compression=auto;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
+chmod -R 755 $ramdisk
 
 ## AnyKernel install
 dump_boot;
@@ -56,6 +57,8 @@ insert_line default.prop "ro.config.tima=0" after "persist.sys.usb.config" "ro.c
 insert_line default.prop "ro.securestorage.support=false" after "persist.sys.usb.config" "ro.securestorage.support=false";
 
 # init.rc
+backup_file init.rc;
+grep "import /init.SmartPack.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.SmartPack.rc\n&/' init.rc
 
 # init.tuna.rc
 
