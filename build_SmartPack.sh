@@ -75,11 +75,13 @@ if [ -z "$KERNEL_VARIANT" ]; then
 else
 	if [ -e arch/arm/configs/$VARIANT_DEFCONFIG ]; then
 		echo -e $COLOR_GREEN"\n building $KERNEL_NAME for $KERNEL_VARIANT\n"$COLOR_NEUTRAL
-		if [ -e output_$KERNEL_VARIANT/.config ]; then
-			rm -f output_$KERNEL_VARIANT/.config
-			if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
-				rm -f output_$KERNEL_VARIANT/arch/arm/boot/zImage
-			fi
+		if [ -e output_$KERNEL_VARIANT/ ]; then
+			if [ -e output_$KERNEL_VARIANT/.config ]; then
+				rm -f output_$KERNEL_VARIANT/.config
+				if [ -e output_$KERNEL_VARIANT/arch/arm/boot/zImage ]; then
+					rm -f output_$KERNEL_VARIANT/arch/arm/boot/zImage
+				fi
+		fi
 		else
 			mkdir output_$KERNEL_VARIANT
 		fi
