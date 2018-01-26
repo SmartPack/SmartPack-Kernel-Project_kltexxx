@@ -29,6 +29,12 @@ echo 1400 > /sys/kernel/cpu_input_boost/ib_duration_ms
 echo 1 > /sys/kernel/cpu_input_boost/enabled
 
 #
+# Disable mpdecision & enable Lazyplug
+#
+stop mpdecision
+echo 1 > /sys/module/lazyplug/parameters/lazyplug_active
+
+#
 # Enable fast charge
 #
 echo 1 > /sys/kernel/fast_charge/force_fast_charge
