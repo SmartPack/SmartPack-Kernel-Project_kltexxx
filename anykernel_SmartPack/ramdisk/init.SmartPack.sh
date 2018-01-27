@@ -29,13 +29,6 @@ echo 1400 > /sys/kernel/cpu_input_boost/ib_duration_ms
 echo 1 > /sys/kernel/cpu_input_boost/enabled
 
 #
-# Charge levels
-#
-echo 1800 > /sys/kernel/charge_levels/charge_level_ac
-echo 1000 > /sys/kernel/charge_levels/charge_level_usb
-echo 1000 > /sys/kernel/charge_levels/charge_level_wireless
-
-#
 # Disable mpdecision & enable Lazyplug
 #
 stop mpdecision

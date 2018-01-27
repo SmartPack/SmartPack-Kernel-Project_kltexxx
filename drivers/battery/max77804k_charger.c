@@ -14,12 +14,12 @@
 #include <linux/mfd/max77804k-private.h>
 #include <linux/of_gpio.h>
 
-#ifdef CONFIG_CHARGE_LEVEL
-#include <linux/charge_level.h>
-#endif
-
 #ifdef CONFIG_USB_HOST_NOTIFY
 #include <linux/host_notify.h>
+#endif
+
+#ifdef CONFIG_FORCE_FAST_CHARGE
+#include <linux/fastchg.h>
 #endif
 
 #if defined(CONFIG_MACH_KLTE_CTC)
@@ -44,17 +44,6 @@
 #define SIOP_WIRELESS_INPUT_LIMIT_CURRENT 620
 #define SIOP_WIRELESS_CHARGING_LIMIT_CURRENT 680
 #define SLOW_CHARGING_CURRENT_STANDARD 400
-
-#ifdef CONFIG_CHARGE_LEVEL
-int ac_level = AC_CHARGE_LEVEL_DEFAULT;
-int usb_level = USB_CHARGE_LEVEL_DEFAULT;
-int wireless_level = WIRELESS_CHARGE_LEVEL_DEFAULT;
-
-char charge_info_text[30] = "";
-int charge_level_nom = 0;		// default is no charger connected
-int charge_level_cur = 0;
-int charge_stock_logic = 1;		// default is stock charging logic
-#endif
 
 struct max77804k_charger_data {
 	struct max77804k_dev	*max77804k;
@@ -937,9 +926,6 @@ static int sec_chg_get_property(struct power_supply *psy,
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		val->intval = max77804k_get_input_current(charger);
-#ifdef CONFIG_CHARGE_LEVEL
-		charge_level_cur = val->intval;
-#endif
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_TYPE:
 		if (!charger->is_charging)
@@ -1039,6 +1025,39 @@ static int sec_chg_set_property(struct power_supply *psy,
 			charger->charging_current =
 					charger->pdata->charging_current
 					[charger->cable_type].fast_charging_current;
+#ifdef CONFIG_FORCE_FAST_CHARGE
+			/* Yank555 : Use Fast charge currents accroding to user settings */
+			if (force_fast_charge == FAST_CHARGE_FORCE_AC) {/* We are in basic Fast Charge mode, so we substitute AC to USB levels */
+				switch(charger->cable_type) {
+					case POWER_SUPPLY_TYPE_USB:	/* These are low current USB connections, apply usual 1A/h AC levels to USB */
+					case POWER_SUPPLY_TYPE_USB_ACA:
+					case POWER_SUPPLY_TYPE_CARDOCK:
+					case POWER_SUPPLY_TYPE_OTG:	charger->charging_current_max = USB_CHARGE_1000;
+									charger->charging_current     = USB_CHARGE_1000;
+									break;
+					default:			/* Don't do anything for any other kind of connections and don't touch when type is unknown */
+									break;
+				}
+			} else if (force_fast_charge == FAST_CHARGE_FORCE_CUSTOM_MA) { /* We are in custom current Fast Charge mode for both AC and USB */
+				switch(charger->cable_type) {
+					case POWER_SUPPLY_TYPE_USB:
+					case POWER_SUPPLY_TYPE_USB_DCP:
+					case POWER_SUPPLY_TYPE_USB_CDP:
+					case POWER_SUPPLY_TYPE_USB_ACA:
+					case POWER_SUPPLY_TYPE_CARDOCK:
+					case POWER_SUPPLY_TYPE_OTG:	/* These are USB connections, apply custom USB current for all of them */
+									charger->charging_current_max = usb_charge_level;
+									charger->charging_current     = usb_charge_level;
+									break;
+					case POWER_SUPPLY_TYPE_MAINS:	/* These are AC connections, apply custom AC current for all of them */
+									charger->charging_current_max = ac_charge_level;
+									charger->charging_current     = min(ac_charge_level+300, MAX_CHARGE_LEVEL); /* Keep the 300mA/h delta, but never go above 2.1A/h */
+									break;
+					default:			/* Don't do anything for any other kind of connections and don't touch when type is unknown */
+									break;
+				}
+			}
+#endif // CONFIG_FORCE_FAST_CHARGE
 			/* decrease the charging current according to siop level */
 			set_charging_current =
 				charger->charging_current * charger->siop_level / 100;
@@ -1095,64 +1114,6 @@ static int sec_chg_set_property(struct power_supply *psy,
 				charger->pdata->charging_current[
 				val->intval].full_check_current_2nd);
 		}
-
-#ifdef CONFIG_CHARGE_LEVEL
-			charge_stock_logic = 1;
-			charge_level_nom = 9999;	// virtual charge rate for stock logic as we do not know the rate
-
-			switch(charger->cable_type)
-			{
-				case POWER_SUPPLY_TYPE_BATTERY:
-					charge_level_nom = 0;
-					sprintf(charge_info_text, "No charger");
-					break;
-					
-				case POWER_SUPPLY_TYPE_MAINS:
-					sprintf(charge_info_text, "AC charger");
-					if (ac_level != 0)
-					{
-						charge_stock_logic = 0;
-						charge_level_nom = ac_level;
-						set_charging_current = ac_level;
-						set_charging_current_max = ac_level;
-					}
-					break;
-
-				case POWER_SUPPLY_TYPE_USB:
-				case POWER_SUPPLY_TYPE_USB_DCP:
-				case POWER_SUPPLY_TYPE_USB_CDP:
-				case POWER_SUPPLY_TYPE_USB_ACA:
-				case POWER_SUPPLY_TYPE_CARDOCK:
-				case POWER_SUPPLY_TYPE_OTG:
-					sprintf(charge_info_text, "USB charger");
-					if (usb_level != 0)
-					{
-						charge_stock_logic = 0;
-						charge_level_nom = usb_level;
-						set_charging_current = usb_level;
-						set_charging_current_max = usb_level;
-					}
-					break;
-
-				case POWER_SUPPLY_TYPE_WIRELESS:
-					sprintf(charge_info_text, "Wireless charger");
-					if (wireless_level != 0)
-					{
-						charge_stock_logic = 0;
-						charge_level_nom = wireless_level;
-						set_charging_current = wireless_level;
-						set_charging_current_max = wireless_level;
-					}
-					break;
-
-				default:
-					sprintf(charge_info_text, "Unknown charger");
-					break;
-			}
-
-			pr_info("Boeffla-Kernel: charge level type: %s, stock logic: %d, nominal mA: %d\n", charge_info_text, charge_stock_logic, charge_level_nom);
-#endif
-
 		max77804k_set_charger_state(charger, charger->is_charging);
 		/* if battery full, only disable charging  */
 		if ((charger->status == POWER_SUPPLY_STATUS_CHARGING) ||
@@ -1191,10 +1152,6 @@ static int sec_chg_set_property(struct power_supply *psy,
 				val->intval);
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-#ifdef CONFIG_CHARGE_LEVEL
-		if (charge_stock_logic == 0)
-			break;
-#endif
 		charger->siop_level = val->intval;
 		if (charger->is_charging) {
 			/* decrease the charging current according to siop level */
@@ -1245,8 +1202,21 @@ static int sec_chg_set_property(struct power_supply *psy,
 			cnfg12 = (0 << CHG_CNFG_12_CHGINSEL_SHIFT);
 			ctrl3 = (1 << CTRL3_JIGSET_SHIFT);
 			if (charger->cable_type == POWER_SUPPLY_TYPE_WIRELESS) {
+#ifdef CONFIG_FORCE_FAST_CHARGE
+				/* Yank555 : Use Fast charge currents accroding to user settings */
+				if (force_fast_charge == FAST_CHARGE_FORCE_AC) {
+					/* We are in basic Fast Charge mode, so we substitute AC to WIRELESS levels */
+					charger->charging_current_max = WIRELESS_CHARGE_1000;
+					charger->charging_current = WIRELESS_CHARGE_1000 + 100;
+				} else if (force_fast_charge == FAST_CHARGE_FORCE_CUSTOM_MA) {
+					/* We are in custom current Fast Charge mode for WIRELESS */
+					charger->charging_current_max = wireless_charge_level;
+					charger->charging_current = min(wireless_charge_level+100, MAX_CHARGE_LEVEL);
+				}
+#else
 				charger->charging_current_max = 650;
 				charger->charging_current = 750;
+#endif // CONFIG_FORCE_FAST_CHARGE
 				max77804k_set_input_current(charger,
 						charger->charging_current_max);
 				max77804k_set_charge_current(charger, charger->charging_current);
