@@ -1,5 +1,9 @@
 # Change-logs
 
+## 46. jan 27, 2018
+Stable release: v12_r2
+Bring back fast charge. Removed UKSM. Added ondemandplus cpufreq governor. Added many patches to improve performance.
+
 ## 45. jan 25, 2018
 Stable release: v12_r1
 Fast charge is now replaced with charge_level interface. Intelli_thermal, charge_level, adreno_idler and Lazy plug are now enabled by default. 
