@@ -182,6 +182,12 @@ config CPU_FREQ_DEFAULT_GOV_ALUCARD
   	select CPU_FREQ_GOV_ALUCARD
   	help
 
+config CPU_FREQ_DEFAULT_GOV_ONDEMANDPLUS
+	bool "ondemandplus"
+	select CPU_FREQ_GOV_ONDEMANDPLUS
+	help
+	Use the CPUFreq governor 'ondemandplus' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -366,6 +372,11 @@ config CPU_FREQ_GOV_ALUCARD
 	depends on CPU_FREQ
 	default y
 	help
+
+config CPU_FREQ_GOV_ONDEMANDPLUS
+	tristate "'ondemandplus' cpufreq governor"
+	depends on CPU_FREQ
+	default y
 
 config CPU_INPUT_BOOST
 	bool "CPU Input Boost"
