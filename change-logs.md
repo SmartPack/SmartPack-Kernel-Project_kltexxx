@@ -1,5 +1,9 @@
 # Change-logs
 
+## 20. January 30, 2018
+Stable release: v10_r2
+Added ondemandplus cpufreq governer. Increased default readahead size to 512. Some fine tunning to nightmare cpufreq governer to improve its efficiency. Several patches on various sides. Properly enabled CPU_input boost (make sure to disable touch boost to avoid conflicts). Introduce SmartPack boot script, which can be utilized for various tasks. Merged with recent changes from Osmosis anykernel repo.
+
 ## 19. January 03, 2018
 Stable release: v10_r1
 Added Lazyplug (credits: arter97) as a replacement to intelli_plug. Enabled zzmove native hotplugging. Extend UKSM sleep interval into 1000 ms (credits: Saber). Enabled BFQ.
