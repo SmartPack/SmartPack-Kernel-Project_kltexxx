@@ -332,3 +332,70 @@ else
 	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
+
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltekdi\n"$COLOR_NEUTRAL
+
+# creating backups
+cp scripts/mkcompile_h release_SmartPack/
+
+# updating kernel name
+
+sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltekdi;" scripts/mkcompile_h;
+
+if [ -e output_kltekdi/ ]; then
+	if [ -e output_kltekdi/.config ]; then
+		rm -f output_kltekdi/.config
+		if [ -e output_kltekdi/arch/arm/boot/zImage ]; then
+			rm -f output_kltekdi/arch/arm/boot/zImage
+		fi
+	fi
+else
+mkdir output_kltekdi
+fi
+
+make -C $(pwd) O=output_kltekdi SmartPack_@kltekdi@_defconfig
+
+# updating kernel version
+sed -i "s;stable;-$KERNEL_VERSION;" output_kltekdi/.config;
+
+make -j$NUM_CPUS -C $(pwd) O=output_kltekdi
+
+if [ -e output_kltekdi/arch/arm/boot/zImage ]; then
+	echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
+	cp output_kltekdi/arch/arm/boot/zImage anykernel_SmartPack/
+	# compile dtb if required
+	if [ "y" == "$COMPILE_DTB" ]; then
+		echo -e $COLOR_GREEN"\n compiling device tree blob (dtb)\n"$COLOR_NEUTRAL
+		if [ -f output_kltekdi/arch/arm/boot/dt.img ]; then
+			rm -f output_kltekdi/arch/arm/boot/dt.img
+		fi
+		chmod 777 tools/dtbToolCM
+		tools/dtbToolCM -2 -o output_kltekdi/arch/arm/boot/dt.img -s 2048 -p output_kltekdi/scripts/dtc/ output_kltekdi/arch/arm/boot/
+		# removing old dtb (if any)
+		if [ -f anykernel_SmartPack/dtb ]; then
+			rm -f anykernel_SmartPack/dtb
+		fi
+		# copying generated dtb to anykernel directory
+		if [ -e output_kltekdi/arch/arm/boot/dt.img ]; then
+			mv -f output_kltekdi/arch/arm/boot/dt.img anykernel_SmartPack/dtb
+		fi
+	fi
+	echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
+	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
+	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
+	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	if [ -f anykernel_SmartPack/dtb ]; then
+		rm -f anykernel_SmartPack/dtb
+	fi
+	# restoring backups
+	mv release_SmartPack/mkcompile_h scripts/
+	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltekdi is finished...\n"$COLOR_NEUTRAL
+	echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
+else
+	if [ -f anykernel_SmartPack/dtb ]; then
+		rm -f anykernel_SmartPack/dtb
+	fi
+	# restoring backups
+	mv release_SmartPack/mkcompile_h scripts/
+	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
+fi
