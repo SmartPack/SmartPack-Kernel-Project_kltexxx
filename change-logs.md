@@ -1,5 +1,9 @@
 # Change-logs
 
+## 5. Feb 01, 2018
+Release status: Oreo-beta-v1.4
+Added ondemand plus cpufreq governer. Up-to-date with Linage-OS source code.
+
 ## 4. Jan 26, 2018
 Release status: Oreo-beta-v1.3
 Enabled Lazyplug by default.
