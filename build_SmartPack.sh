@@ -88,6 +88,11 @@ fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltekor\n"$COLOR_NEUTRAL
 
+# check and create release folder.
+if [ ! -d "release_SmartPack/" ]; then
+	mkdir release_SmartPack/
+fi
+
 # creating backups
 cp scripts/mkcompile_h release_SmartPack/
 
