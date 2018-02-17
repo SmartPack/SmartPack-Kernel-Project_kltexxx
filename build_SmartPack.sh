@@ -95,6 +95,10 @@ if [ -z "$KERNEL_VARIANT" ]; then
 	echo -e $COLOR_GREEN"\n Please select the variant to build... 'KERNEL_VARIANT' should not be empty...\n"$COLOR_NEUTRAL
 else
 	if [ -e arch/arm/configs/$KERNEL_DEFCONFIG ]; then
+		# check and create release folder.
+		if [ ! -d "release_SmartPack/" ]; then
+			mkdir release_SmartPack/
+		fi
 		# creating backups
 		cp scripts/mkcompile_h release_SmartPack/
 		# updating kernel name
