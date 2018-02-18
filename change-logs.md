@@ -1,5 +1,9 @@
 # Change-logs
 
+## 6. Feb 18, 2018
+Release status: Oreo-beta-v1.5
+Up-to-date with Linage-OS source code.
+
 ## 5. Feb 01, 2018
 Release status: Oreo-beta-v1.4
 Added ondemand plus cpufreq governer. Up-to-date with Linage-OS source code.

@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo)",
+  "name": "SmartPack-Kernel (Oreo-beta-v1.5)",
   "short_description": "SmartPack-Kernel",
   "long_description": "SmartPack-Kernel project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900P/I (code names: kltespr/kltedv). ***Warning*** Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v1.4",
+      "name": "Oreo-beta-v1.5",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true",
-      "md5sum": "f4343c804852be640351ce2ee58cfc29",
+      "md5sum": "391a9612fd5d964fbd0b082025025b2c",
       "changelog": [
-        "Added ondemand plus cpufreq governer. Up-to-date with Linage-OS source code."
+        "Up-to-date with Linage-OS source code."
       ]
     }
   ]
