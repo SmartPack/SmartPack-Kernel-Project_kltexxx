@@ -107,9 +107,6 @@ static struct workqueue_struct *lazyplug_boost_wq;
 static unsigned int __read_mostly lazyplug_active = 0;
 module_param(lazyplug_active, uint, 0664);
 
-static unsigned int __read_mostly touch_boost_active = 0;
-module_param(touch_boost_active, uint, 0664);
-
 static unsigned int __read_mostly nr_run_profile_sel = 0;
 module_param(nr_run_profile_sel, uint, 0664);
 
@@ -464,7 +461,6 @@ static struct early_suspend lazyplug_early_suspend_driver = {
 #endif	/* CONFIG_HAS_EARLYSUSPEND */
 
 static unsigned int Lnr_run_profile_sel = 0;
-static unsigned int Ltouch_boost_active = true;
 static bool Lprevious_state = false;
 void lazyplug_enter_lazy(bool enter)
 {
@@ -472,13 +468,10 @@ void lazyplug_enter_lazy(bool enter)
 	if (enter && !Lprevious_state) {
 		pr_info("lazyplug: entering lazy mode\n");
 		Lnr_run_profile_sel = nr_run_profile_sel;
-		Ltouch_boost_active = touch_boost_active;
 		nr_run_profile_sel = 2; /* conversative profile */
-		touch_boost_active = false;
 		Lprevious_state = true;
 	} else if (!enter && Lprevious_state) {
 		pr_info("lazyplug: exiting lazy mode\n");
-		touch_boost_active = Ltouch_boost_active;
 		nr_run_profile_sel = Lnr_run_profile_sel;
 		Lprevious_state = false;
 	}
@@ -492,10 +485,8 @@ static void lazyplug_input_event(struct input_handle *handle,
 	pr_info("lazyplug touched!\n");
 #endif
 
-	if (lazyplug_active && touch_boost_active && !suspended) {
+	if (lazyplug_active && !suspended) {
 		idle_count = 0;
-		queue_delayed_work_on(0, lazyplug_wq, &lazyplug_boost,
-			msecs_to_jiffies(10));
 	}
 }
 
