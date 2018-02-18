@@ -1,0 +1,71 @@
+{
+  "name": "SmartPack-Kernel (Oreo)",
+  "short_description": "SmartPack-Kernel",
+  "long_description": "SmartPack-Kernel project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900FD/MD (code names: klteduos). ***Warning*** Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.",
+  "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
+  "xda": "https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206",
+  "paypal": "https://www.paypal.me/sunilpaulmathew",
+  "downfolder": "https://androidfilehost.com/?w=files&flid=227316",
+  "github": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx",
+  "telegram": "https://t.me/sunilpaulmathew",
+  "changelog": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/change-logs.md",
+  "features": [
+    "Build from latest Lineage OS source code",
+    "Build using UBERTC-8.0 (gcc-8.0)/Linaro-7.x (gcc-7.x) toolchain",
+    "Anykernel concept for compatibility with maximum devices",
+    "Kernel tweaker app recommend: SmartPack-Kernel Manager, Offical Kernel Auditor",
+    "Added features include",
+    "CPU voltage control",
+    "CPU_input boost",
+    "FRandom",
+    "268 MHz CPU underclocked frequency cycle",
+    "Additional 27 MHz gpu frequency step (idle frequency)",
+    "Dynamic FSync",
+    "Fastcharge",
+    "Sound Control",
+    "Adreno_Idler",
+    "FRandom",
+    "KCAL v2 advanced colour management",
+    "a lot more...",
+    {
+      "name": "CPU Governors",
+      "items": [
+        "Intelliactive, Lionheart, Nightmare, Alucard, SmartMax, Intellidemand, zzmove & Adaptive"
+      ]
+    },
+    {
+      "name": "CPU hotplugs",
+      "items": [
+        "Intelli_plug, Mako and Alucard hotplugs"
+      ]
+    },
+    {
+      "name": "GPU Governors",
+      "items": [
+        "Adreno_Idler"
+      ]
+    },
+    {
+      "name": "I/O Schedulers",
+      "items": [
+        "tripndroid, sioplus, vr, zen, fifo, tripndroi & fiops"
+      ]
+    },
+    {
+      "name": "TCP Congestion Controls",
+      "items": [
+        "cubic, reno, bic, westwood, highspeed, hybla, htcp, vegas, scaleable, lp, yea & illinois"
+      ]
+    }
+  ],
+  "downloads": [
+    {
+      "name": "Oreo-beta-v1.4",
+      "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true",
+      "md5sum": "a169d8449f412e453ac461b021369fa9",
+      "changelog": [
+        "Added ondemand plus cpufreq governer. Up-to-date with Linage-OS source code."
+      ]
+    }
+  ]
+}
