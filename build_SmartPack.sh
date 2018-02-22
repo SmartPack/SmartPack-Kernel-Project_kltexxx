@@ -142,6 +142,8 @@ if [ -e output_kltekor/arch/arm/boot/zImage ]; then
 	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+	cp release_SmartPack/$KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekor.zip
 	# restoring backups
 	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltekor is finished...\n"$COLOR_NEUTRAL
@@ -202,6 +204,8 @@ if [ -e output_klte/arch/arm/boot/zImage ]; then
 	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+	cp release_SmartPack/$KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klte.zip
 	# restoring backups
 	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for klte is finished...\n"$COLOR_NEUTRAL
@@ -262,6 +266,8 @@ if [ -e output_klteduos/arch/arm/boot/zImage ]; then
 	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+	cp release_SmartPack/$KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klteduos.zip
 	# restoring backups
 	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for klteduos is finished...\n"$COLOR_NEUTRAL
@@ -322,6 +328,8 @@ if [ -e output_kltespr/arch/arm/boot/zImage ]; then
 	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+	cp release_SmartPack/$KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltespr.zip
 	if [ -f anykernel_SmartPack/dtb ]; then
 		rm -f anykernel_SmartPack/dtb
 	fi
@@ -389,6 +397,8 @@ if [ -e output_kltekdi/arch/arm/boot/zImage ]; then
 	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
+	echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+	cp release_SmartPack/$KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekdi.zip
 	if [ -f anykernel_SmartPack/dtb ]; then
 		rm -f anykernel_SmartPack/dtb
 	fi
