@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v12_r2)",
+  "name": "SmartPack-Kernel (Nougat-stable-v12_r3)",
   "short_description": "SmartPack-Kernel",
   "long_description": "SmartPack-Kernel project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900FD/MD (code names: klteduos). ***Warning*** Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v12_r2",
+      "name": "stable-v12_r3",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true",
-      "md5sum": "435012d02f639e5ccd13fc73888d346b",
+      "md5sum": "88fbcc0c8e18af0e629fb38a728283d0",
       "changelog": [
-        "Bring back fast charge. Removed UKSM. Added ondemandplus cpufreq governor. Added many patches to improve performance."
+        "Removed Lazyplug touch boost. Merged all the patched from Anykernel repo. Up-to-date with Linage-OS source code."
       ]
     }
   ]

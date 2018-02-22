@@ -1,5 +1,9 @@
 # Change-logs
 
+## 47. Feb 22, 2018
+*Stable release: v12_r3*
+Changes: Removed Lazyplug touch boost. Merged all the patched from Anykernel repo. Up-to-date with Linage-OS source code.
+
 ## 46. jan 27, 2018
 *Stable release: v12_r2*
 Changes: Bring back fast charge. Removed UKSM. Added ondemandplus cpufreq governor. Added many patches to improve performance.
