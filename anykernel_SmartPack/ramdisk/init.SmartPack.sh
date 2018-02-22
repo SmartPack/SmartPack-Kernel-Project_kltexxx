@@ -45,13 +45,6 @@ echo 1 > /sys/kernel/fast_charge/force_fast_charge
 echo 1 > /sys/module/adreno_idler/parameters/adreno_idler_active
 
 #
-# Enable intelli_thermal
-#
-echo 0 > /sys/module/msm_thermal/vdd_restriction/enabled
-echo 0 > /sys/module/msm_thermal/core_control/enabled
-echo Y > /sys/module/msm_thermal/parameters/enabled
-
-#
 # Done!
 #
 echo "Everything done" | tee /dev/kmsg
