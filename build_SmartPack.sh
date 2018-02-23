@@ -144,6 +144,8 @@ else
 			if [ -f anykernel_SmartPack/dtb ]; then
 				rm -f anykernel_SmartPack/dtb
 			fi
+			echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+			cp release_SmartPack/$KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-$KERNEL_VARIANT.zip
 			# restoring backups
 			mv release_SmartPack/mkcompile_h scripts/
 			echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
