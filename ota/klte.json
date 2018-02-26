@@ -1,7 +1,7 @@
 {
   "name": "SmartPack-Kernel (Oreo-beta-v1.6)",
-  "short_description": "SmartPack-Kernel",
-  "long_description": "SmartPack-Kernel project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900F/V & SM-S902L (code names: klte/kltevzw). ***Warning*** Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.",
+  "short_description": "<h3>SmartPack-Kernel</h3>",
+  "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900F/V & SM-S902L (code names: klte/kltevzw).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
   "xda": "https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206",
   "paypal": "https://www.paypal.me/sunilpaulmathew",
