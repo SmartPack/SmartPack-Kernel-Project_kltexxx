@@ -1,5 +1,9 @@
 # Change-logs
 
+## 7. Feb 26, 2018
+Release status: Oreo-beta-v1.6
+Switched toolchain to UBERTC 8.x (latest). Removed Lazyplug touch boost (to avoid conflicts with CPU Input Boost). Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
+
 ## 6. Feb 18, 2018
 Release status: Oreo-beta-v1.5
 Up-to-date with Linage-OS source code.
