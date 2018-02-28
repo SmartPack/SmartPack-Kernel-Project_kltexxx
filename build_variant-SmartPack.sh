@@ -62,6 +62,8 @@ KERNEL_DATE="$(date +"%Y%m%d")"
 
 COMPILE_DTB="y"
 
+PREPARE_RELEASE=""
+
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 
 # ***** ***** ***** ***** ***THE END*** ***** ***** ***** ***** #
@@ -143,6 +145,10 @@ else
 			rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
 			if [ -f anykernel_SmartPack/dtb ]; then
 				rm -f anykernel_SmartPack/dtb
+			fi
+			if [ "y" == "$PREPARE_RELEASE" ]; then
+				echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+				cp release_SmartPack/$KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-$KERNEL_VARIANT.zip
 			fi
 			# restoring backups
 			mv release_SmartPack/mkcompile_h scripts/
