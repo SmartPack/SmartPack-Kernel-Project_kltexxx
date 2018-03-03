@@ -53,6 +53,8 @@ VARIANT_DEFCONFIG="SmartPack_@$KERNEL_VARIANT@_defconfig"
 
 COMPILE_DTB="y"
 
+PREPARE_RELEASE="y"
+
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 
 COLOR_RED="\033[0;31m"
@@ -108,10 +110,18 @@ else
 			fi
 			echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 			cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
+			# check and create release folder.
+			if [ ! -d "release_SmartPack/" ]; then
+				mkdir release_SmartPack/
+			fi
 			echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 			rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
 			if [ -f anykernel_SmartPack/dtb ]; then
 				rm -f anykernel_SmartPack/dtb
+			fi
+			if [ "y" == "$PREPARE_RELEASE" ]; then
+				echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
+				cp release_SmartPack/$KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-$KERNEL_VARIANT.zip
 			fi
 			echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 		else
