@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v1.6)",
+  "name": "SmartPack-Kernel (Oreo-beta-v1.7)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v1.6",
+      "name": "Oreo-beta-v1.7",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "2cff59713568dede26a0a951498033b6",
+      "md5sum": "e7cb98cc97d8cbe0974a27ec2c67cbdd",
       "changelog": [
-        "Switched toolchain to UBERTC 8.x (latest). Removed Lazyplug touch boost (to avoid conflicts with CPU Input Boost). Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code."
+        "Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code."
       ]
     }
   ]
