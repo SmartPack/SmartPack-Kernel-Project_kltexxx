@@ -1,5 +1,9 @@
 # Change-logs
 
+## 48. March 08, 2018
+*Stable release: v13*
+Changes: Updated to Samsung's latest open source code release (G900FXXU1CRA2). Merged all the patched from Anykernel repo.
+
 ## 47. Feb 22, 2018
 *Stable release: v12_r3*
 Changes: Removed Lazyplug touch boost. Merged all the patched from Anykernel repo. Up-to-date with Linage-OS source code.

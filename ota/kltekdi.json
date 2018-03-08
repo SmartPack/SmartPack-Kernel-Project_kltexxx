@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v12_r3)",
+  "name": "SmartPack-Kernel (Nougat-stable-v13)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v12_r3",
+      "name": "stable-v13",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "c3f3f004f684c2aacb3419585ad43c35",
+      "md5sum": "157e567b6814cefcc7653470f54aec51",
       "changelog": [
-        "Removed Lazyplug touch boost. Merged all the patched from Anykernel repo. Up-to-date with Linage-OS source code."
+        "Updated to Samsung's latest open source code release (G900FXXU1CRA2). Merged all the patched from Anykernel repo."
       ]
     }
   ]
