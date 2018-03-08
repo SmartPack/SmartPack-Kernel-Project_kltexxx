@@ -618,7 +618,6 @@ sdioh_iovar_op(sdioh_info_t *si, const char *name,
 		int_val = (int32)0;
 		bcopy(&int_val, arg, val_size);
 		break;
-
 	default:
 		bcmerror = BCME_UNSUPPORTED;
 		break;
