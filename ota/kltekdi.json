@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13)",
+  "name": "SmartPack-Kernel (Nougat-stable-v13_r1)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13",
+      "name": "stable-v13_r1",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "157e567b6814cefcc7653470f54aec51",
+      "md5sum": "b44806e3e709fd1c86c0bbaa9f9c2bbe",
       "changelog": [
-        "Updated to Samsung's latest open source code release (G900FXXU1CRA2). Merged all the patched from Anykernel repo."
+        "Some workaround to solve deep sleep issue (exactly same as last test build)."
       ]
     }
   ]

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 49. March 16, 2018
+*Stable release: v13_r1*
+Changes: Workaround to solve deep sleep issue (exactly same as last test build).
+
 ## 48. March 08, 2018
 *Stable release: v13*
 Changes: Updated to Samsung's latest open source code release (G900FXXU1CRA2). Merged all the patched from Anykernel repo.
