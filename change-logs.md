@@ -1,8 +1,12 @@
 # Change-logs
 
+## 9. March 22, 2018
+Release status: Oreo-beta-v1.8
+Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
+
 ## 8. March 06, 2018
 Release status: Oreo-beta-v1.7
-Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
+Up-to-date with Linage-OS source code. Merged recent changes from osm0sis's Anykernel repo.
 
 ## 7. Feb 26, 2018
 Release status: Oreo-beta-v1.6
