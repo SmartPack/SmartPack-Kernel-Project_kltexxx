@@ -1748,15 +1748,13 @@ static inline pid_t task_tgid_nr(struct task_struct *tsk)
 	return tsk->tgid;
 }
 
-static inline pid_t task_tgid_nr_ns(struct task_struct *tsk, struct pid_namespace *ns)
-{
-	return __task_pid_nr_ns(tsk, __PIDTYPE_TGID, ns);
-}
+pid_t task_tgid_nr_ns(struct task_struct *tsk, struct pid_namespace *ns);
 
 static inline pid_t task_tgid_vnr(struct task_struct *tsk)
 {
-	return __task_pid_nr_ns(tsk, __PIDTYPE_TGID, NULL);
+	return pid_vnr(task_tgid(tsk));
 }
+
 
 static inline pid_t task_pgrp_nr_ns(struct task_struct *tsk,
 					struct pid_namespace *ns)

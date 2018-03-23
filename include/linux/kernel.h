@@ -35,7 +35,6 @@
 #define LLONG_MAX	((long long)(~0ULL>>1))
 #define LLONG_MIN	(-LLONG_MAX - 1)
 #define ULLONG_MAX	(~0ULL)
-#define U32_MAX  ((u32)~0U)
 #define SIZE_MAX	(~(size_t)0)
 
 #define U8_MAX		((u8)~0U)
