@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13_r1)",
+  "name": "SmartPack-Kernel (Nougat-stable-v13_r2)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900F/V & SM-S902L (code names: klte/kltevzw).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13_r1",
+      "name": "stable-v13_r2",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klte.zip?raw=true",
-      "md5sum": "749a41445c19cf4c9dbceaeca895c001",
+      "md5sum": "8640dff1e5efb656ec6af2e84d5cf7d9",
       "changelog": [
-        "Workaround to solve deep sleep issue (exactly same as last test build)."
+        "Removed changes Samsung's latest oscr. Some changes in the zzmove hotplugging (Credits: Saber). Hide microphone from KA (still available in Kernel) to avoid issues."
       ]
     }
   ]

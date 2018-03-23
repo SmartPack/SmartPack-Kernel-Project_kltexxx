@@ -1,5 +1,9 @@
 # Change-logs
 
+## 50. March 23, 2018
+*Stable release: v13_r2*
+Changes: Removed changes Samsung's latest oscr. Some changes in the zzmove hotplugging (Credits: Saber). Hide microphone from KA (still available in Kernel) to avoid issues.
+
 ## 49. March 16, 2018
 *Stable release: v13_r1*
 Changes: Workaround to solve deep sleep issue (exactly same as last test build).
