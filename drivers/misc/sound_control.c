@@ -33,7 +33,7 @@ unsigned int speaker_boost = 3;
 /*
  * Mic boost value
  */
-unsigned int mic_boost = 10;
+unsigned int microphone_boost = 10;
 
 /*
  * Sysfs get/set entries
@@ -117,7 +117,7 @@ static ssize_t speaker_boost_store(struct device * dev,
 static ssize_t mic_boost_show(struct device *dev, 
 		struct device_attribute *attr, char *buf)
 {
-    return sprintf(buf, "%d\n", mic_boost);
+    return sprintf(buf, "%d\n", microphone_boost);
 }
 
 static ssize_t mic_boost_store(struct device * dev, 
@@ -130,11 +130,11 @@ static ssize_t mic_boost_store(struct device * dev,
 	if (ret < 0)
 		return ret;
 
-	mic_boost = val > MAX_VALUE ? MAX_VALUE : val;
+	microphone_boost = val > MAX_VALUE ? MAX_VALUE : val;
 
-	update_mic_gain(mic_boost);
+	update_mic_gain(microphone_boost);
 
-	pr_info("%s: %d\n", __func__, mic_boost);
+	pr_info("%s: %d\n", __func__, microphone_boost);
 
     return size;
 }
@@ -145,14 +145,14 @@ static DEVICE_ATTR(headset_boost, 0664, headset_boost_show,
 		headset_boost_store);
 static DEVICE_ATTR(speaker_boost, 0664, speaker_boost_show, 
 		speaker_boost_store);
-static DEVICE_ATTR(mic_boost, 0664, mic_boost_show, mic_boost_store);
+static DEVICE_ATTR(microphone_boost, 0664, mic_boost_show, mic_boost_store);
 
 static struct attribute *soundcontrol_attributes[] = 
 {
 	&dev_attr_volume_boost.attr,
 	&dev_attr_headset_boost.attr,
 	&dev_attr_speaker_boost.attr,
-	&dev_attr_mic_boost.attr,
+	&dev_attr_microphone_boost.attr,
 	NULL
 };
 
