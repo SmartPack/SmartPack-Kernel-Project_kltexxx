@@ -3,6 +3,8 @@
  *
  * Ported to Note 3 (n9005) and extended : Jean-Pierre Rasquin <yank555.lu@gmail.com>
  *
+ * Updated: sunilpaulmathew <sunil.kde@gmail.com>
+ *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
  * may be copied, distributed, and modified under those terms.
@@ -40,11 +42,11 @@
  *
  * /sys/kernel/fast_charge/usb_charge_level (r/w)
  *
- *   rate at which to charge when on USB (0.460A/h to 1.0A/h)
+ *   rate at which to charge when on USB (0.460A/h to 1.6A/h)
  *
  * /sys/kernel/fast_charge/wireless_charge_level (r/w)
  *
- *   rate at which to charge when on WIRELESS (0.650A/h to 1.2A/h)
+ *   rate at which to charge when on WIRELESS (0.650A/h to 1.6A/h)
  *
  * /sys/kernel/fast_charge/failsafe (rw)
  *
@@ -271,6 +273,12 @@ static ssize_t usb_charge_level_store(struct kobject *kobj,
 			case USB_CHARGE_800:
 			case USB_CHARGE_900:
 			case USB_CHARGE_1000:
+			case USB_CHARGE_1100:
+			case USB_CHARGE_1200:
+			case USB_CHARGE_1300:
+			case USB_CHARGE_1400:
+			case USB_CHARGE_1500:
+			case USB_CHARGE_1600:
 				usb_charge_level = new_usb_charge_level;
 				return count;
 			default:
@@ -315,13 +323,20 @@ static ssize_t wireless_charge_level_store(struct kobject *kobj, struct kobj_att
 
 		switch (new_wireless_charge_level) {
 			case WIRELESS_CHARGE_650:
+			case WIRELESS_CHARGE_700:
 			case WIRELESS_CHARGE_800:
 			case WIRELESS_CHARGE_900:
 			case WIRELESS_CHARGE_1000:
 			case WIRELESS_CHARGE_1100:
-			case WIRELESS_CHARGE_1200:	wireless_charge_level = new_wireless_charge_level;
-							return count;
-			default:			return -EINVAL;
+			case WIRELESS_CHARGE_1200:
+			case WIRELESS_CHARGE_1300:
+			case WIRELESS_CHARGE_1400:
+			case WIRELESS_CHARGE_1500:
+			case WIRELESS_CHARGE_1600:
+				wireless_charge_level = new_wireless_charge_level;
+				return count;
+			default:
+				return -EINVAL;
 		}
 
 	}

@@ -3,6 +3,8 @@
  *
  * Ported to Note 3 (n9005) and extended : Jean-Pierre Rasquin <yank555.lu@gmail.com>
  *
+ * Updated: sunilpaulmathew <sunil.kde@gmail.com>
+ *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
  * may be copied, distributed, and modified under those terms.
@@ -20,8 +22,8 @@
 
 #define FAST_CHARGE_VERSION "v1.2 by Yank555.lu"
 #define AC_LEVELS  "1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100"
-#define USB_LEVELS "460 500 600 700 800 900 1000"
-#define WIRELESS_LEVELS "650 800 900 1000 1100 1200"
+#define USB_LEVELS "460 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600"
+#define WIRELESS_LEVELS "650 700 800 900 1000 1100 1200 1300 1400 1500 1600"
 #define ANY_LEVELS "0 to 2100"
 
 extern int force_fast_charge;
@@ -64,15 +66,26 @@ extern int usb_charge_level;
 #define USB_CHARGE_800 800
 #define USB_CHARGE_900 900
 #define USB_CHARGE_1000 1000
+#define USB_CHARGE_1100 1100
+#define USB_CHARGE_1200 1200
+#define USB_CHARGE_1300 1300
+#define USB_CHARGE_1400 1400
+#define USB_CHARGE_1500 1500
+#define USB_CHARGE_1600 1600
 
 extern int wireless_charge_level;
 
 #define WIRELESS_CHARGE_650 650	/* default */
+#define WIRELESS_CHARGE_700 700
 #define WIRELESS_CHARGE_800 800
 #define WIRELESS_CHARGE_900 900
 #define WIRELESS_CHARGE_1000 1000
 #define WIRELESS_CHARGE_1100 1100
 #define WIRELESS_CHARGE_1200 1200
+#define WIRELESS_CHARGE_1300 1300
+#define WIRELESS_CHARGE_1400 1400
+#define WIRELESS_CHARGE_1500 1500
+#define WIRELESS_CHARGE_1600 1600
 
 #define MAX_CHARGE_LEVEL 2100	/* Whatever happens, this is the limit */
 
