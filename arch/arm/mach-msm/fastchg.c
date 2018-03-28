@@ -3,6 +3,8 @@
  *
  * Ported to Note 3 (n9005) and extended : Jean-Pierre Rasquin <yank555.lu@gmail.com>
  *
+ * Updated: sunilpaulmathew <sunil.kde@gmail.com>
+ *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
  * may be copied, distributed, and modified under those terms.
@@ -20,9 +22,9 @@
  *
  * /sys/kernel/fast_charge/force_fast_charge (rw)
  *
- *   0 - disabled (default)
+ *   0 - disabled
  *   1 - substitute AC to USB
- *   2 - use custom mA configured through sysfs interface (see below)
+ *   2 - use custom mA configured through sysfs interface (see below) (default)
  *
  * /sys/kernel/fast_charge/use_mtp_during_fast_charge (rw)
  *
@@ -40,11 +42,11 @@
  *
  * /sys/kernel/fast_charge/usb_charge_level (r/w)
  *
- *   rate at which to charge when on USB (0.460A/h to 1.0A/h)
+ *   rate at which to charge when on USB (0.400A/h to 1.6A/h)
  *
  * /sys/kernel/fast_charge/wireless_charge_level (r/w)
  *
- *   rate at which to charge when on WIRELESS (0.650A/h to 1.2A/h)
+ *   rate at which to charge when on WIRELESS (0.600A/h to 1.6A/h)
  *
  * /sys/kernel/fast_charge/failsafe (rw)
  *
@@ -264,13 +266,19 @@ static ssize_t usb_charge_level_store(struct kobject *kobj,
 	else {
 
 		switch (new_usb_charge_level) {
-			case USB_CHARGE_460:
+			case USB_CHARGE_400:
 			case USB_CHARGE_500:
 			case USB_CHARGE_600:
 			case USB_CHARGE_700:
 			case USB_CHARGE_800:
 			case USB_CHARGE_900:
 			case USB_CHARGE_1000:
+			case USB_CHARGE_1100:
+			case USB_CHARGE_1200:
+			case USB_CHARGE_1300:
+			case USB_CHARGE_1400:
+			case USB_CHARGE_1500:
+			case USB_CHARGE_1600:
 				usb_charge_level = new_usb_charge_level;
 				return count;
 			default:
@@ -314,14 +322,21 @@ static ssize_t wireless_charge_level_store(struct kobject *kobj, struct kobj_att
 	else {
 
 		switch (new_wireless_charge_level) {
-			case WIRELESS_CHARGE_650:
+			case WIRELESS_CHARGE_600:
+			case WIRELESS_CHARGE_700:
 			case WIRELESS_CHARGE_800:
 			case WIRELESS_CHARGE_900:
 			case WIRELESS_CHARGE_1000:
 			case WIRELESS_CHARGE_1100:
-			case WIRELESS_CHARGE_1200:	wireless_charge_level = new_wireless_charge_level;
-							return count;
-			default:			return -EINVAL;
+			case WIRELESS_CHARGE_1200:
+			case WIRELESS_CHARGE_1300:
+			case WIRELESS_CHARGE_1400:
+			case WIRELESS_CHARGE_1500:
+			case WIRELESS_CHARGE_1600:
+				wireless_charge_level = new_wireless_charge_level;
+				return count;
+			default:
+				return -EINVAL;
 		}
 
 	}
@@ -354,7 +369,7 @@ static ssize_t failsafe_store(struct kobject *kobj,
 
 	switch (new_failsafe) {
 		case FAIL_SAFE_ENABLED:
-			usb_charge_level = USB_CHARGE_460;
+			usb_charge_level = USB_CHARGE_500;
 			ac_charge_level = AC_CHARGE_1800;
 			failsafe = new_failsafe;
 			return count;
@@ -416,9 +431,9 @@ static ssize_t info_show(struct kobject *kobj,
 		"Valid USB levels      : %s\n"
 		"Valid Wireless levels : %s\n",
 		 FAST_CHARGE_VERSION,
-		 force_fast_charge == FAST_CHARGE_DISABLED 	   ? "0 - Disabled (default)" :
+		 force_fast_charge == FAST_CHARGE_DISABLED 	   ? "0 - Disabled" :
 		(force_fast_charge == FAST_CHARGE_FORCE_AC         ? "1 - Use stock AC level on USB" :
-		(force_fast_charge == FAST_CHARGE_FORCE_CUSTOM_MA  ? "2 - Use custom mA on AC and USB" : "Problem : value out of range")),
+		(force_fast_charge == FAST_CHARGE_FORCE_CUSTOM_MA  ? "2 - Use custom mA on AC and USB (default)" : "Problem : value out of range")),
 		 use_mtp_during_fast_charge          == USE_MTP_DURING_FAST_CHARGE_DISABLED           ? "0 - Disabled" :
 		(use_mtp_during_fast_charge          == USE_MTP_DURING_FAST_CHARGE_ENABLED            ? "1 - Enabled" : "Problem : value out of range"),
 		 screen_on_current_limit          == SCREEN_ON_CURRENT_LIMIT_DISABLED           ? "0 - Disabled" :
@@ -474,18 +489,18 @@ int force_fast_charge_init(void)
 {
 	int force_fast_charge_retval;
 
-	/* Forced fast charge disabled by default */
-	force_fast_charge = FAST_CHARGE_DISABLED;
+	/* Forced fast charge custom mA by default */
+	force_fast_charge = FAST_CHARGE_FORCE_CUSTOM_MA;
 	/* Use MTP during fast charge, enabled by default */
 	use_mtp_during_fast_charge = USE_MTP_DURING_FAST_CHARGE_ENABLED;
 	/* Use Samsung Screen ON current limit while charging, enabled by default */
 	screen_on_current_limit = SCREEN_ON_CURRENT_LIMIT_ENABLED;
-	/* Default AC charge level to 1800mA/h    */
-	ac_charge_level   = AC_CHARGE_1800;
-	/* Default USB charge level to 460mA/h    */
-	usb_charge_level  = USB_CHARGE_460;
-	/* Default USB charge level to 650mA/h    */
-	wireless_charge_level = WIRELESS_CHARGE_650;
+	/* Default AC charge level to 2000mA/h    */
+	ac_charge_level   = AC_CHARGE_2000;
+	/* Default USB charge level to 700mA/h    */
+	usb_charge_level  = USB_CHARGE_700;
+	/* Default USB charge level to 900mA/h    */
+	wireless_charge_level = WIRELESS_CHARGE_900;
 	/* Allow only values in list by default   */
 	failsafe              = FAIL_SAFE_ENABLED;
 
@@ -516,4 +531,5 @@ module_exit(force_fast_charge_exit);
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Jean-Pierre Rasquin <yank555.lu@gmail.com>");
 MODULE_AUTHOR("Paul Reioux <reioux@gmail.com>");
-MODULE_DESCRIPTION("Fast Charge Hack for Android");
+MODULE_AUTHOR("sunilpaulmathew <sunil.kde@gmail.com>");
+MODULE_DESCRIPTION("Fast Charge for Samsung Galaxy S5");
