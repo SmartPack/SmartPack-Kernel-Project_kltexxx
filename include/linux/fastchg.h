@@ -20,17 +20,17 @@
 #ifndef _LINUX_FASTCHG_H
 #define _LINUX_FASTCHG_H
 
-#define FAST_CHARGE_VERSION "v1.2 by Yank555.lu"
+#define FAST_CHARGE_VERSION "v2.0"
 #define AC_LEVELS  "1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100"
-#define USB_LEVELS "460 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600"
-#define WIRELESS_LEVELS "650 700 800 900 1000 1100 1200 1300 1400 1500 1600"
+#define USB_LEVELS "400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600"
+#define WIRELESS_LEVELS "600 700 800 900 1000 1100 1200 1300 1400 1500 1600"
 #define ANY_LEVELS "0 to 2100"
 
 extern int force_fast_charge;
 
-#define FAST_CHARGE_DISABLED 0	/* default */
+#define FAST_CHARGE_DISABLED 0
 #define FAST_CHARGE_FORCE_AC 1
-#define FAST_CHARGE_FORCE_CUSTOM_MA 2
+#define FAST_CHARGE_FORCE_CUSTOM_MA 2	/* default */
 
 extern int use_mtp_during_fast_charge;
 
@@ -52,17 +52,17 @@ extern int ac_charge_level;
 #define AC_CHARGE_1500 1500
 #define AC_CHARGE_1600 1600
 #define AC_CHARGE_1700 1700
-#define AC_CHARGE_1800 1800	/* default */
+#define AC_CHARGE_1800 1800
 #define AC_CHARGE_1900 1900
-#define AC_CHARGE_2000 2000
+#define AC_CHARGE_2000 2000	/* default */
 #define AC_CHARGE_2100 2100
 
 extern int usb_charge_level;
 
-#define USB_CHARGE_460 460	/* default */
+#define USB_CHARGE_400 400
 #define USB_CHARGE_500 500
 #define USB_CHARGE_600 600
-#define USB_CHARGE_700 700
+#define USB_CHARGE_700 700	/* default */
 #define USB_CHARGE_800 800
 #define USB_CHARGE_900 900
 #define USB_CHARGE_1000 1000
@@ -75,10 +75,10 @@ extern int usb_charge_level;
 
 extern int wireless_charge_level;
 
-#define WIRELESS_CHARGE_650 650	/* default */
+#define WIRELESS_CHARGE_600 600
 #define WIRELESS_CHARGE_700 700
 #define WIRELESS_CHARGE_800 800
-#define WIRELESS_CHARGE_900 900
+#define WIRELESS_CHARGE_900 900	/* default */
 #define WIRELESS_CHARGE_1000 1000
 #define WIRELESS_CHARGE_1100 1100
 #define WIRELESS_CHARGE_1200 1200
