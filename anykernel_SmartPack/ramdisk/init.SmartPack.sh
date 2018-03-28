@@ -28,11 +28,6 @@ if [ "$(grep -c SmartPack-Kernel- /proc/version)" -eq "1" ]; then
 	# Disable mpdecision & enable Lazyplug
 	stop mpdecision
 	echo 1 > /sys/module/lazyplug/parameters/lazyplug_active
-	# Enable fast charge custom mode
-	echo 2 > /sys/kernel/fast_charge/force_fast_charge
-	echo 1900 > /sys/kernel/fast_charge/ac_charge_level
-	echo 700 > /sys/kernel/fast_charge/usb_charge_level
-	echo 900 > /sys/kernel/fast_charge/wireless_charge_level
 	# Enable Adreno_idler
 	echo 1 > /sys/module/adreno_idler/parameters/adreno_idler_active
 	# Done!
