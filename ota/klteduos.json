@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13_r2)",
+  "name": "SmartPack-Kernel (Nougat-stable-v13_r3)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900FD/MD (code names: klteduos).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13_r2",
+      "name": "stable-v13_r3",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true",
-      "md5sum": "c4e610fd65db1cbdd2185cbd4f7907c0",
+      "md5sum": "8e7c6106f1362fd56fe86777346ee26e",
       "changelog": [
-        "Removed changes Samsung's latest oscr. Some changes in the zzmove hotplugging (Credits: Saber). Hide microphone from KA (still available in Kernel) to avoid issues."
+        "Merged some selected changes (not all) from Samsung oscr (G900FXXU1CRA2). Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900, iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes."
       ]
     }
   ]
