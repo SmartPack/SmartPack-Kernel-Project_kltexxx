@@ -1,5 +1,9 @@
 # Change-logs
 
+## 21. April 07, 2018
+Stable release: v10_r3
+Changes: Merged some selected changes (not all) from Samsung oscr (G900FXXU1CRA2). Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900 (need more testing), iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes.
+
 ## 20. January 30, 2018
 Stable release: v10_r2
 Added ondemandplus cpufreq governer. Increased default readahead size to 512. Some fine tunning to nightmare cpufreq governer to improve its efficiency. Several patches on various sides. Properly enabled CPU_input boost (make sure to disable touch boost to avoid conflicts). Introduce SmartPack boot script, which can be utilized for various tasks. Merged with recent changes from Osmosis anykernel repo.
