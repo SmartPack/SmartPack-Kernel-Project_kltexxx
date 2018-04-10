@@ -276,7 +276,7 @@ static void cpufreq_interactive_timer_resched(
 				     &pcpu->time_in_idle_timestamp);
 	pcpu->cputime_speedadj = 0;
 	pcpu->cputime_speedadj_timestamp = pcpu->time_in_idle_timestamp;
-	expires = jiffies + usecs_to_jiffies(timer_rate);
+	expires = jiffies + timer_rate;
 	
 #ifdef DYN_DEFER
        if (pcpu->target_freq > pcpu->policy->min)
@@ -288,7 +288,7 @@ static void cpufreq_interactive_timer_resched(
 	mod_timer_pinned(&pcpu->cpu_timer, expires);
 
 	if (timer_slack_val >= 0 && pcpu->target_freq > pcpu->policy->min) {
-		expires += usecs_to_jiffies(timer_slack_val);
+		expires += timer_slack_val;
 		mod_timer_pinned(&pcpu->cpu_slack_timer, expires);
 	}
 
@@ -302,14 +302,14 @@ static void cpufreq_interactive_timer_resched(
 static void cpufreq_interactive_timer_start(int cpu)
 {
 	struct cpufreq_interactive_cpuinfo *pcpu = &per_cpu(cpuinfo, cpu);
-	unsigned long expires = jiffies + usecs_to_jiffies(timer_rate);
+	unsigned long expires = jiffies + timer_rate;
 	unsigned long flags;
 
 	pcpu->cpu_timer.expires = expires;
 	del_timer_sync(&pcpu->cpu_timer);
 	add_timer_on(&pcpu->cpu_timer, cpu);
 	if (timer_slack_val >= 0 && pcpu->target_freq > pcpu->policy->min) {
-		expires += usecs_to_jiffies(timer_slack_val);
+		expires += timer_slack_val;
 		pcpu->cpu_slack_timer.expires = expires;
 		del_timer_sync(&pcpu->cpu_slack_timer);
 		add_timer_on(&pcpu->cpu_slack_timer, cpu);
@@ -982,7 +982,7 @@ static int cpufreq_interactive_notifier(
 	int cpu;
 	unsigned long flags;
 
-	if (val == CPUFREQ_POSTCHANGE) {
+	if (val == CPUFREQ_PRECHANGE) {
 		pcpu = &per_cpu(cpuinfo, freq->cpu);
 		if (!down_read_trylock(&pcpu->enable_sem))
 			return 0;
@@ -1762,10 +1762,8 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 
 		mutex_lock(&gov_lock);
 
-		freq_table =
-			cpufreq_frequency_get_table(policy->cpu);
-		if (!hispeed_freq)
-			hispeed_freq = policy->max;
+		freq_table = cpufreq_frequency_get_table(policy->cpu);
+
 #ifdef CONFIG_MODE_AUTO_CHANGE
 	        for (j=0 ; j<MAX_PARAM_SET ; j++)
 			if (!hispeed_freq_set[j])
@@ -1886,6 +1884,7 @@ static int __init cpufreq_interactive_init(void)
 	unsigned int i;
 	struct cpufreq_interactive_cpuinfo *pcpu;
 	struct sched_param param = { .sched_priority = MAX_RT_PRIO-1 };
+	int ret = 0;
 
 	/* Initalize per-cpu timers */
 	for_each_possible_cpu(i) {
@@ -1925,7 +1924,12 @@ static int __init cpufreq_interactive_init(void)
 	/* NB: wake up so the thread does not look hung to the freezer */
 	wake_up_process(speedchange_task);
 
-	return cpufreq_register_governor(&cpufreq_gov_interactive);
+	ret = cpufreq_register_governor(&cpufreq_gov_interactive);
+	if (ret) {
+		kthread_stop(speedchange_task);
+		put_task_struct(speedchange_task);
+	}
+	return ret;
 }
 
 #ifdef CONFIG_RETENTION_CHANGE
