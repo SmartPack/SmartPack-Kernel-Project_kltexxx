@@ -52,9 +52,9 @@ extern int ac_charge_level;
 #define AC_CHARGE_1500 1500
 #define AC_CHARGE_1600 1600
 #define AC_CHARGE_1700 1700
-#define AC_CHARGE_1800 1800
+#define AC_CHARGE_1800 1800	/* default */
 #define AC_CHARGE_1900 1900
-#define AC_CHARGE_2000 2000	/* default */
+#define AC_CHARGE_2000 2000
 #define AC_CHARGE_2100 2100
 
 extern int usb_charge_level;
