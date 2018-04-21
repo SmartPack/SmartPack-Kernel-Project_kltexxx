@@ -101,4 +101,3 @@ obj-$(CONFIG_CHECK_SIMSLOT_COUNT) += sim_slot.o
 obj-$(CONFIG_SEC_MODEM) += modem_if/
 
 obj-$(CONFIG_DUALWAVE) += dualwave/
-obj-y += sound_control.o
