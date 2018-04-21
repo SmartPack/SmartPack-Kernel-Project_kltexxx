@@ -196,7 +196,7 @@ static ssize_t boeffla_sound_store(struct device *dev, struct device_attribute *
 static ssize_t headphone_volume_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	// print current values
-	return sprintf(buf, "Headphone volume:\nLeft: %d\nRight: %d\n", 
+	return sprintf(buf, "%d %d\n", 
 		headphone_volume_l, headphone_volume_r);
 }
 
@@ -243,7 +243,7 @@ static ssize_t headphone_volume_store(struct device *dev, struct device_attribut
 
 	// print debug info
 	if (debug)
-		printk("Boeffla-sound: headphone volume L=%d R=%d\n", headphone_volume_l, headphone_volume_r);
+		printk("%d %d\n", headphone_volume_l, headphone_volume_r);
 
 	return count;
 }
@@ -254,7 +254,7 @@ static ssize_t headphone_volume_store(struct device *dev, struct device_attribut
 static ssize_t speaker_volume_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	// print current values
-	return sprintf(buf, "Speaker volume:\nLeft: %d\nRight: %d\n", 
+	return sprintf(buf, "%d %d\n", 
 		speaker_volume_l, speaker_volume_r);
 }
 
@@ -301,7 +301,7 @@ static ssize_t speaker_volume_store(struct device *dev, struct device_attribute 
 
 	// print debug info
 	if (debug)
-		printk("Boeffla-sound: speaker volume L=%d R=%d\n", speaker_volume_l, speaker_volume_r);
+		printk("%d %d\n", speaker_volume_l, speaker_volume_r);
 
 	return count;
 }
