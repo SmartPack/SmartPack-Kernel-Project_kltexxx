@@ -101,10 +101,6 @@ else
 		if [ ! -d "release_SmartPack/" ]; then
 			mkdir release_SmartPack/
 		fi
-		# creating backups
-		cp scripts/mkcompile_h release_SmartPack/
-		# updating kernel name
-		sed -i "s;SmartPack-Kernel;$KERNEL_NAME-$KERNEL_VARIANT;" scripts/mkcompile_h;
 		if [ -e output_$KERNEL_VARIANT/ ]; then
 			if [ -e output_$KERNEL_VARIANT/.config ]; then
 				rm -f output_$KERNEL_VARIANT/.config
@@ -150,15 +146,11 @@ else
 				echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 				cp release_SmartPack/$KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-$KERNEL_VARIANT.zip
 			fi
-			# restoring backups
-			mv release_SmartPack/mkcompile_h scripts/
 			echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 		else
 			if [ -f anykernel_SmartPack/dtb ]; then
 				rm -f anykernel_SmartPack/dtb
 			fi
-			# restoring backups
-			mv release_SmartPack/mkcompile_h scripts/
 			echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 		fi
 	else
