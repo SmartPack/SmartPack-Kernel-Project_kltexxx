@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v1.9)",
+  "name": "SmartPack-Kernel (Oreo-beta-v2.0)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900FD/MD (code names: klteduos).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -21,8 +21,8 @@
     "268 MHz CPU underclocked frequency cycle",
     "Additional 27 MHz gpu frequency step (idle frequency)",
     "Dynamic FSync",
-    "Fastcharge",
-    "Sound Control",
+    "Fastcharge v2.0",
+    "Boeffla Sound",
     "Adreno_Idler",
     "FRandom",
     "KCAL v2 advanced colour management",
@@ -36,7 +36,7 @@
     {
       "name": "CPU hotplugs",
       "items": [
-        "Intelli_plug, Mako and Alucard hotplugs"
+        "Lazyplug, Mako and Alucard hotplugs"
       ]
     },
     {
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v1.9",
+      "name": "Oreo-beta-v2.0",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true",
-      "md5sum": "186a3b314152cd0843f9a1854798498f",
+      "md5sum": "0a21f8edd4011560abdcf881d3eca672",
       "changelog": [
-        "Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900, iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes. Removed Microphone Gain from KA to avoid conflicts. Removed SmartPack boot script. Up-to-date with Linage-OS source code."
+        "Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA. Up-to-date with Linage-OS source code."
       ]
     }
   ]

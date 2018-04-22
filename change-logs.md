@@ -1,5 +1,9 @@
 # Change-logs
 
+## 11. April 22, 2018
+Release status: Oreo-beta-v2.0
+Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA. Up-to-date with Linage-OS source code.
+
 ## 10. April 2, 2018
 Release status: Oreo-beta-v1.9
 Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900, iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes. Removed Microphone Gain from KA to avoid conflicts. Removed SmartPack boot script. Up-to-date with Linage-OS source code.
