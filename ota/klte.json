@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13_r3)",
+  "name": "SmartPack-Kernel (Nougat-stable-v13_r4)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900F/V & SM-S902L (code names: klte/kltevzw).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -21,8 +21,8 @@
     "268 MHz CPU underclocked frequency cycle",
     "Additional 27 MHz gpu frequency step (idle frequency)",
     "Dynamic FSync",
-    "Fastcharge",
-    "Sound Control",
+    "Fastcharge v2.0",
+    "Boeffla Sound",
     "Adreno_Idler",
     "FRandom",
     "KCAL v2 advanced colour management",
@@ -36,7 +36,7 @@
     {
       "name": "CPU hotplugs",
       "items": [
-        "Intelli_plug, Mako and Alucard hotplugs"
+        "Lazyplug, Mako and Alucard hotplugs"
       ]
     },
     {
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13_r3",
+      "name": "stable-v13_r4",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klte.zip?raw=true",
-      "md5sum": "b60d9bde4c53b0765eae3429291cc029",
+      "md5sum": "6592e92c5986170477b476111e1f839c",
       "changelog": [
-        "Merged some selected changes (not all) from Samsung oscr (G900FXXU1CRA2). Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900, iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes."
+        "Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA."
       ]
     }
   ]

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 52. April 23, 2018
+*Stable release: v13_r4*
+Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA.
+
 ## 51. March 30, 2018
 *Stable release: v13_r3*
 Changes: Merged some selected changes (not all) from Samsung oscr (G900FXXU1CRA2). Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900, iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes.
