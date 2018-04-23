@@ -95,13 +95,6 @@ if [ ! -d "release_SmartPack/" ]; then
 	mkdir release_SmartPack/
 fi
 
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltekor;" scripts/mkcompile_h;
-
 if [ -e output_kltekor/ ]; then
 	if [ -e output_kltekor/.config ]; then
 		rm -f output_kltekor/.config
@@ -148,23 +141,13 @@ if [ -e output_kltekor/arch/arm/boot/zImage ]; then
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp release_SmartPack/$KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekor.zip
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltekor is finished...\n"$COLOR_NEUTRAL
 else
 	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klte\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-klte;" scripts/mkcompile_h;
 
 if [ -e output_klte/ ]; then
 	if [ -e output_klte/.config ]; then
@@ -212,23 +195,12 @@ if [ -e output_klte/arch/arm/boot/zImage ]; then
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp release_SmartPack/$KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klte.zip
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for klte is finished...\n"$COLOR_NEUTRAL
 else
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klteduos\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-klteduos;" scripts/mkcompile_h;
 
 if [ -e output_klteduos/ ]; then
 	if [ -e output_klteduos/.config ]; then
@@ -276,23 +248,12 @@ if [ -e output_klteduos/arch/arm/boot/zImage ]; then
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp release_SmartPack/$KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klteduos.zip
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for klteduos is finished...\n"$COLOR_NEUTRAL
 else
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltespr\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltespr;" scripts/mkcompile_h;
 
 if [ -e output_kltespr/ ]; then
 	if [ -e output_kltespr/.config ]; then
@@ -340,27 +301,15 @@ if [ -e output_kltespr/arch/arm/boot/zImage ]; then
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp release_SmartPack/$KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltespr.zip
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltespr is finished...\n"$COLOR_NEUTRAL
-	echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 else
 	if [ -f anykernel_SmartPack/dtb ]; then
 		rm -f anykernel_SmartPack/dtb
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltekdi\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltekdi;" scripts/mkcompile_h;
 
 if [ -e output_kltekdi/ ]; then
 	if [ -e output_kltekdi/.config ]; then
@@ -411,15 +360,11 @@ if [ -e output_kltekdi/arch/arm/boot/zImage ]; then
 	if [ -f anykernel_SmartPack/dtb ]; then
 		rm -f anykernel_SmartPack/dtb
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltekdi is finished...\n"$COLOR_NEUTRAL
 	echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 else
 	if [ -f anykernel_SmartPack/dtb ]; then
 		rm -f anykernel_SmartPack/dtb
 	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
