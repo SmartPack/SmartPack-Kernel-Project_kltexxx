@@ -1,5 +1,9 @@
 # Change-logs
 
+## 12. May 2, 2018
+Release status: Oreo-beta-v2.1
+Added spectrum based performance tweaks and are accessible in SmartPack-Kernel Manager/Spectrum (currently three different tweaks are available and are: Battery, Performance and Balanced). Removed all the changes hard-coded to "init.qcom.rc". Up-to-date with Linage-OS source code.
+
 ## 11. April 22, 2018
 Release status: Oreo-beta-v2.0
 Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA. Up-to-date with Linage-OS source code.

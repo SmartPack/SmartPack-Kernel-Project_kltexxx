@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v2.0)",
+  "name": "SmartPack-Kernel (Oreo-beta-v2.1)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900FD/MD (code names: klteduos).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v2.0",
+      "name": "Oreo-beta-v2.1",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true",
-      "md5sum": "0a21f8edd4011560abdcf881d3eca672",
+      "md5sum": "67947ca46d5f1e1eeb4932b6128e9f6b",
       "changelog": [
-        "Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA. Up-to-date with Linage-OS source code."
+        "Added spectrum based performance tweaks and are accessible in SmartPack-Kernel Manager/Spectrum. Removed all the changes hard-coded to 'init.qcom.rc'. Up-to-date with Linage-OS source code."
       ]
     }
   ]
