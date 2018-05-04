@@ -1,5 +1,9 @@
 # Change-logs
 
+## 53. May 4, 2018
+*Stable release: v13_r5*
+Added spectrum based "Performance Tweaks". Up-to-date with Linage-OS source code.
+
 ## 52. April 23, 2018
 *Stable release: v13_r4*
 Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA.

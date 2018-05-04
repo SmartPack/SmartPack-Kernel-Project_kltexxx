@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13_r4",
+  "name": "SmartPack-Kernel (Nougat-stable-v13_r5",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13_r4",
+      "name": "stable-v13_r5",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "ce90b96f79b31583c85989efeadb1206",
+      "md5sum": "f3a4180df10f243cd6fbace8058d8754",
       "changelog": [
-        "Added Boeffla Sound (as a replacement for Franco sound control). Some fine tuning to interactive. Reduce default AC level to 1800 mA."
+        "Added spectrum based 'Performance Tweaks'. Up-to-date with Linage-OS source code."
       ]
     }
   ]
