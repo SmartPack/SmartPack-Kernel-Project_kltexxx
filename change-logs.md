@@ -1,5 +1,9 @@
 # Change-logs
 
+## 13. May 7, 2018
+Release status: Oreo-beta-v2.2
+Added LED blink/fade support (credits: Lord Boeffla) which is configurable in SP-Kernel Manager. Up-to-date with Linage-OS source code.
+
 ## 12. May 2, 2018
 Release status: Oreo-beta-v2.1
 Added spectrum based performance tweaks and are accessible in SmartPack-Kernel Manager/Spectrum (currently three different tweaks are available and are: Battery, Performance and Balanced). Removed all the changes hard-coded to "init.qcom.rc". Up-to-date with Linage-OS source code.

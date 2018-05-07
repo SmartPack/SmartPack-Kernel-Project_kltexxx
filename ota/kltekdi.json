@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v2.1)",
+  "name": "SmartPack-Kernel (Oreo-beta-v2.2)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v2.1",
+      "name": "Oreo-beta-v2.2",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "27a07887b682e86477991c7357979d53",
+      "md5sum": "c3713c5797641ab5442a4cee3b05d10f",
       "changelog": [
-        "Added spectrum based performance tweaks and are accessible in SmartPack-Kernel Manager/Spectrum. Removed all the changes hard-coded to 'init.qcom.rc'. Up-to-date with Linage-OS source code."
+        "Added LED blink/fade support (credits: Lord Boeffla) which is configurable in SP-Kernel Manager. Up-to-date with Linage-OS source code."
       ]
     }
   ]
