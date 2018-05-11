@@ -54,7 +54,7 @@ KERNEL_NAME="SmartPack-Kernel"
 
 KERNEL_VARIANT="kltekor"	# only one variant at a time
 
-KERNEL_VERSION="Oreo-beta-v2.2"   # leave as such, if no specific version tag
+KERNEL_VERSION="Oreo-beta-v2.3"   # leave as such, if no specific version tag
 
 KERNEL_DEFCONFIG="SmartPack_@$KERNEL_VARIANT@_defconfig"
 

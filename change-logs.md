@@ -1,5 +1,9 @@
 # Change-logs
 
+## 14. May 11, 2018
+Release status: Oreo-beta-v2.3
+CPU is overclocked up-to 2.84 GHz.
+
 ## 13. May 7, 2018
 Release status: Oreo-beta-v2.2
 Added LED blink/fade support (credits: Lord Boeffla) which is configurable in SP-Kernel Manager. Up-to-date with Linage-OS source code.
