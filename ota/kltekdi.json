@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v2.3)",
+  "name": "SmartPack-Kernel (Oreo-beta-v2.4)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This build is only for SCL23 (code names: kltekd1).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v2.3",
+      "name": "Oreo-beta-v2.4",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true",
-      "md5sum": "b9e402ca79beb07f84e7e684a04954e8",
+      "md5sum": "1a325e19c3ee961a3901d131a43d0655",
       "changelog": [
-        "CPU is overclocked up-to 2.84 GHz."
+        "Added boeffla generic wakelock blocker (v1.1.0)."
       ]
     }
   ]

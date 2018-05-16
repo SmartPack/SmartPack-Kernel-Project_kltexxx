@@ -1,5 +1,9 @@
 # Change-logs
 
+## 15. May 16, 2018
+Release status: Oreo-beta-v2.4
+Added boeffla generic wakelock blocker (v1.1.0).
+
 ## 14. May 11, 2018
 Release status: Oreo-beta-v2.3
 CPU is overclocked up-to 2.84 GHz.
