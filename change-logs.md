@@ -1,5 +1,9 @@
 # Change-logs
 
+## 16. May 27, 2018
+Release status: Oreo-beta-v2.5
+Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
+
 ## 15. May 16, 2018
 Release status: Oreo-beta-v2.4
 Added boeffla generic wakelock blocker (v1.1.0).
