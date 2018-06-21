@@ -26,9 +26,9 @@ device.name9=kltekor
 device.name10=klteskt
 device.name11=kltektt
 device.name12=kltelgt
-device.name13=
-device.name14=
-device.name15=
+device.name13=klteduos
+device.name14=kltedcm
+device.name15=kltekdi
 } # end properties
 
 # shell variables
