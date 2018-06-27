@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-stable-v13_r5)",
+  "name": "SmartPack-Kernel (Nougat-final-v14)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900P/I (code names: kltespr/kltedv).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "stable-v13_r5",
+      "name": "final-v14",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltespr.zip?raw=true",
-      "md5sum": "10c75ad82e2904b32899f933c8cce734",
+      "md5sum": "be4ed51cb0f9493906fa3d2248e98550",
       "changelog": [
-        "Added spectrum based 'Performance Tweaks'. Up-to-date with Linage-OS source code."
+        "Add LED blink/fade control. Add boeffla generic wakelock blocker driver (v1.1.0). Merge recent patches from osm0sis's anykernel2 repo. Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1."
       ]
     }
   ]
