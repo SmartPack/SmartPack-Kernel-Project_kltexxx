@@ -38,7 +38,7 @@
  *
  * /sys/kernel/fast_charge/ac_charge_level (rw)
  *
- *   rate at which to charge when on AC (1.0A/h to 2.1A/h)
+ *   rate at which to charge when on AC (0.400A/h to 2.1A/h)
  *
  * /sys/kernel/fast_charge/usb_charge_level (r/w)
  *
@@ -46,7 +46,7 @@
  *
  * /sys/kernel/fast_charge/wireless_charge_level (r/w)
  *
- *   rate at which to charge when on WIRELESS (0.600A/h to 1.6A/h)
+ *   rate at which to charge when on WIRELESS (0.400A/h to 1.6A/h)
  *
  * /sys/kernel/fast_charge/failsafe (rw)
  *
@@ -207,10 +207,11 @@ static ssize_t ac_charge_level_store(struct kobject *kobj,
 	else {
 
 		switch (new_ac_charge_level) {
+			case AC_CHARGE_400:
+			case AC_CHARGE_600:
+			case AC_CHARGE_800:
 			case AC_CHARGE_1000:
-			case AC_CHARGE_1100:
 			case AC_CHARGE_1200:
-			case AC_CHARGE_1300:
 			case AC_CHARGE_1400:
 			case AC_CHARGE_1500:
 			case AC_CHARGE_1600:
@@ -322,6 +323,8 @@ static ssize_t wireless_charge_level_store(struct kobject *kobj, struct kobj_att
 	else {
 
 		switch (new_wireless_charge_level) {
+			case WIRELESS_CHARGE_400:
+			case WIRELESS_CHARGE_500:
 			case WIRELESS_CHARGE_600:
 			case WIRELESS_CHARGE_700:
 			case WIRELESS_CHARGE_800:
@@ -419,7 +422,7 @@ static ssize_t info_show(struct kobject *kobj,
 {
 	return sprintf(
 		buf,
-		"Forced Fast Charge for Samsung Note 3 %s\n\n"
+		"Forced Fast Charge for Samsung Galaxy S5 %s\n\n"
 		"Fast charge mode      : %s\n"
 		"MTP while charging mode : %s\n"
 		"Screen on Current Limit mode : %s\n"
