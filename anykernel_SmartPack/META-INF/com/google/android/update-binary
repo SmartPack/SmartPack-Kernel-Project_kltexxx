@@ -17,7 +17,7 @@ file_getprop() { grep "^$2=" "$1" | cut -d= -f2; }
 if [ ! "$(getprop 2>/dev/null)" ]; then
   getprop() {
     local propval="$(file_getprop /default.prop $1 2>/dev/null)";
-    test "$propval" || local propval="$(file_getprop /system/build.prop $1 2>/dev/null)";
+    test "$propval" || local propval="$(file_getprop $root/system/build.prop $1 2>/dev/null)";
     test "$propval" && echo "$propval" || echo "";
   }
 fi;
