@@ -1,5 +1,13 @@
 # Change-logs
 
+## 17. June 30, 2018
+Release status: beta-v15
+Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
+
+*** @ *** @ *** @ *** @ *** @ *** @ *** @ *** @ ***
+*Merged kernel version numbering to Nougat branch.*
+*** @ *** @ *** @ *** @ *** @ *** @ *** @ *** @ ***
+
 ## 16. May 27, 2018
 Release status: Oreo-beta-v2.5
 Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.

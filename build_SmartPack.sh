@@ -52,7 +52,7 @@ KERNEL_NAME="SmartPack-Kernel"
 
 KERNEL_VARIANT="kltekor"	# options: klte, kltekor, kltedv, klteduos, kltekdi & all (build all the variants)
 
-KERNEL_VERSION="Oreo-beta-v2.5"   # leave as such, if no specific version tag
+KERNEL_VERSION="beta-v15"   # leave as such, if no specific version tag
 
 KERNEL_DEFCONFIG="SmartPack_@$KERNEL_VARIANT@_defconfig"
 

@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Oreo-beta-v2.5)",
+  "name": "SmartPack-Kernel (beta-v15)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900K/L/S (code names: kltektt/kltelgt/klteskt).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -22,7 +22,7 @@
     "268 MHz CPU underclocked frequency cycle",
     "Additional 27 MHz gpu frequency step (idle frequency)",
     "Dynamic FSync",
-    "Fastcharge v2.0",
+    "Fastcharge v2.1",
     "Boeffla Sound",
     "Adreno Idler",
     "KCAL v2 advanced colour management",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "Oreo-beta-v2.5",
+      "name": "beta-v15",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true",
-      "md5sum": "246f9a3bce749d3dbea7f9f31584fa37",
+      "md5sum": "c42484a1be154d2d5ba6fdcb5b9b1fcd",
       "changelog": [
-        "Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code."
+        "Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code."
       ]
     }
   ]
