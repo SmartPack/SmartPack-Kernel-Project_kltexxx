@@ -1,8 +1,13 @@
 # Change-logs
 
+## 55. July 12, 2018
+*Stable release: final-v14_r1*
+### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.
+One more *final* build to fix some simple issues. Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo.
+
 ## 54. June 19, 2018
 *Stable release: final-v14*
-### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.
+~~### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.~~
 Added LED blink/fade control. Added boeffla generic wakelock blocker driver (v1.1.0). Merge recent patches from osm0sis's anykernel2 repo.
 
 ## 53. May 4, 2018

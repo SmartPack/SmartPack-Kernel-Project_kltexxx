@@ -1,5 +1,5 @@
 {
-  "name": "SmartPack-Kernel (Nougat-final-v14)",
+  "name": "SmartPack-Kernel (Nougat-final-v14_r1)",
   "short_description": "<h3>SmartPack-Kernel</h3>",
   "long_description": "<b>SmartPack-Kernel</b> project for Samsung Galaxy S5 (MSM8974) by sunilpaulmathew@xda-developers.com. This is a unified build for SM-G900K/L/S (code names: kltektt/kltelgt/klteskt).<h3>Warning</h3><p>Please flash this Kernel on your own risk. I will not take any responsibility if something wrong happens to your device.</p>",
   "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
@@ -21,7 +21,7 @@
     "268 MHz CPU underclocked frequency cycle",
     "Additional 27 MHz gpu frequency step (idle frequency)",
     "Dynamic FSync",
-    "Fastcharge v2.0",
+    "Fastcharge v2.1",
     "Boeffla Sound",
     "Adreno_Idler",
     "FRandom",
@@ -60,11 +60,11 @@
   ],
   "downloads": [
     {
-      "name": "final-v14",
+      "name": "final-v14_r1",
       "url": "https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true",
-      "md5sum": "7e10f05dfc0b1b6bd106093c959d0403",
+      "md5sum": "31555961c630de86794ab1dd81bc72a5",
       "changelog": [
-        "Add LED blink/fade control. Add boeffla generic wakelock blocker driver (v1.1.0). Merge recent patches from osm0sis's anykernel2 repo. Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1."
+        "Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo. Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1."
       ]
     }
   ]
