@@ -1,5 +1,9 @@
 # Change-logs
 
+## 18. July 26, 2018
+Release status: beta-v16
+Up-to-date with Linage-OS source code. Some minor changes to work best with new Kernel Manager update.
+
 ## 17. June 30, 2018
 Release status: beta-v15
 Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo. Up-to-date with Linage-OS source code.
