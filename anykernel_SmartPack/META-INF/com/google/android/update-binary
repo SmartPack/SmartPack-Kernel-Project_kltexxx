@@ -64,7 +64,7 @@ if [ -f /tmp/anykernel/banner ]; then
   ui_print " ";
 fi;
 
-ui_print "SmartPack-Kernel for Samsung Galaxy S5 (kltexxx)";
+ui_print "SmartPack-Kernel $(cat /tmp/anykernel/ramdisk/version) for Samsung Galaxy S5";
 if [ -f /tmp/anykernel/version ]; then
   ui_print " ";
   ui_print "$(cat /tmp/anykernel/version)";
