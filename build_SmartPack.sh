@@ -40,9 +40,9 @@
 
 GOOGLE="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
 
-UBERTC="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
+UBERTC="/home/sunil/UBERTC-arm-eabi-8.2/bin/arm-none-eabi-"
 
-LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
+LINARO="/home/sunil/arm-linux-androideabi-7.3-linaro/bin/arm-eabi-"
 
 TOOLCHAIN="linaro"	# Leave empty for using Google’s stock toolchain
 
