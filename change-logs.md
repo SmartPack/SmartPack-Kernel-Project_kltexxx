@@ -1,5 +1,9 @@
 # Change-logs
 
+## 19. August 1, 2018
+Release status: beta-v17
+Fixed performance tweaks (was broken in an old update). Update UBER toolchain to the latest (8.2).
+
 ## 18. July 26, 2018
 Release status: beta-v16
 Up-to-date with Linage-OS source code. Some minor changes to work best with new Kernel Manager update.
