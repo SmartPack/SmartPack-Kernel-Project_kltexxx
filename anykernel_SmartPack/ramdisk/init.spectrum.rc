@@ -22,6 +22,8 @@ on property:persist.spectrum.profile=0
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 2265600
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2265600
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 2265600
+    write /sys/module/lazyplug/parameters/lazyplug_active 1
+    write /sys/module/lazyplug/parameters/nr_run_profile_sel 0
     write /sys/kernel/cpu_input_boost/enabled 1
     write /sys/kernel/cpu_input_boost/ib_duration_ms 750
     write /sys/kernel/cpu_input_boost/ib_freqs "1190400 1497600"
@@ -48,6 +50,8 @@ on property:persist.spectrum.profile=1
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 2457600
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2457600
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 2457600
+    write /sys/module/lazyplug/parameters/lazyplug_active 1
+    write /sys/module/lazyplug/parameters/nr_run_profile_sel 1
     write /sys/kernel/cpu_input_boost/enabled 1
     write /sys/kernel/cpu_input_boost/ib_duration_ms 1400
     write /sys/kernel/cpu_input_boost/ib_freqs "1190400 1497600"
@@ -74,6 +78,8 @@ on property:persist.spectrum.profile=2
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1497600
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 729600
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 729600
+    write /sys/module/lazyplug/parameters/lazyplug_active 1
+    write /sys/module/lazyplug/parameters/nr_run_profile_sel 6
     write /sys/kernel/cpu_input_boost/enabled 1
     write /sys/kernel/cpu_input_boost/ib_duration_ms 150
     write /sys/kernel/cpu_input_boost/ib_freqs "1190400 1497600"
