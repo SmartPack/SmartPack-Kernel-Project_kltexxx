@@ -136,6 +136,8 @@ elif [ -e arch/arm/configs/$KERNEL_DEFCONFIG ]; then
 				mv -f $DTB $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
@@ -146,6 +148,9 @@ elif [ -e arch/arm/configs/$KERNEL_DEFCONFIG ]; then
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		if [ "y" == "$PREPARE_RELEASE" ]; then
 			echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
@@ -196,6 +201,8 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 				mv -f output_kltekor/arch/arm/boot/dt.img $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
@@ -206,6 +213,9 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekor.zip
@@ -251,12 +261,17 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 				mv -f output_klte/arch/arm/boot/dt.img $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-klte-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klte.zip
@@ -302,12 +317,17 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 				mv -f output_kltespr/arch/arm/boot/dt.img $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-kltespr-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltespr.zip
@@ -353,12 +373,17 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 				mv -f output_klteduos/arch/arm/boot/dt.img $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-klteduos.zip
@@ -404,12 +429,17 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 				mv -f output_kltekdi/arch/arm/boot/dt.img $ANYKERNEL_DIR/dtb
 			fi
 		fi
+		# adding version tag to ramdisk in order to access from the Kernel Manager
+		echo $KERNEL_VERSION > $ANYKERNEL_DIR/ramdisk/version
 		echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 		cd $ANYKERNEL_DIR && zip -r9 $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 		echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 		rm $ANYKERNEL_DIR/zImage && mv $ANYKERNEL_DIR/$KERNEL_NAME* $RELEASE_DIR
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
+		fi
+		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
+			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekdi.zip
