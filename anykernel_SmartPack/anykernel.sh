@@ -55,6 +55,10 @@ dump_boot;
 backup_file init.rc;
 grep "import /init.spectrum.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.spectrum.rc\n&/' init.rc
 
+# init.qcom.rc
+backup_file init.qcom.rc;
+remove_line init.qcom.rc "start mpdecision";
+
 # init.tuna.rc
 
 # init.superuser.rc
