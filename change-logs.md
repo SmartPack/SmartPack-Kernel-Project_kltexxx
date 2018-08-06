@@ -1,5 +1,9 @@
 # Change-logs
 
+## 20. August 6, 2018
+Release status: beta-v18
+Disabled mpdecision by default. Enabled lazyplug (Required SmartPack-Kernel Manager). Up-to-date with Linage-OS source code.
+
 ## 19. August 1, 2018
 Release status: beta-v17
 Fixed performance tweaks (was broken in an old update). Update UBER toolchain to the latest (8.2).
