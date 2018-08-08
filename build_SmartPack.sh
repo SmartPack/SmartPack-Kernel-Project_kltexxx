@@ -108,6 +108,8 @@ else
 					mv -f output_$KERNEL_VARIANT/arch/arm/boot/dt.img anykernel_SmartPack/dtb
 				fi
 			fi
+			# adding version tag to ramdisk in order to access from the Kernel Manager
+			echo $KERNEL_VERSION > anykernel_SmartPack/ramdisk/version
 			echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
 			cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-TW-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
 			# check and create release folder.
@@ -118,6 +120,9 @@ else
 			rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
 			if [ -f anykernel_SmartPack/dtb ]; then
 				rm -f anykernel_SmartPack/dtb
+			fi
+			if [ -f anykernel_SmartPack/ramdisk/version ]; then
+				rm -f anykernel_SmartPack/ramdisk/version
 			fi
 			if [ "y" == "$PREPARE_RELEASE" ]; then
 				echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
