@@ -35,7 +35,7 @@
 # ***** ***** *Variables to be configured manually* ***** ***** #
 #
 
-TOOLCHAIN="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
+TOOLCHAIN="/home/sunil/android-ndk-r17b/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
 
 ARCHITECTURE="arm"
 
