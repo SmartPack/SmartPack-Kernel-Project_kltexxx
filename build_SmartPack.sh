@@ -93,6 +93,10 @@ elif [ "linaro" == "$TOOLCHAIN" ]; then
 	export CROSS_COMPILE="${CCACHE} $LINARO"
 fi
 
+export KBUILD_BUILD_USER=SmartPack-Kernel-[sunilpaulmathew
+
+export KBUILD_BUILD_HOST=xda-developers.com]
+
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
 fi
