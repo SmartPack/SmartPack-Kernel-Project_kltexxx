@@ -1,5 +1,10 @@
 # Change-logs
 
+## 22. August 08, 2018
+Final release: v11
+*Please note: This will be the last and final update for Samsung stock based ROMs.*
+Changes: Update fast charge into v2.1 (own modifications). Implemented spectrum based Performance Tweaks (can be accessible in SmartPack-Kernel Manager or original Spectrum). Added Boeffla Wakelock blocker driver. Replaced franco sound control with Boeffla Sound. Google's stock toolchain is updated to r17b.
+
 ## 21. April 07, 2018
 Stable release: v10_r3
 Changes: Merged some selected changes (not all) from Samsung oscr (G900FXXU1CRA2). Update fast charge into v2.0 (own modifications), which includes i. Enabled Custom Mode by default, ii. Bump USB and Wireless levels up to 1600, iii. Set default AC: 2000; USB:700; Wireless:900 (need more testing), iv. Reduced lower charge current for USB (400) and Wireless (600) and v. Miscellaneous changes.
