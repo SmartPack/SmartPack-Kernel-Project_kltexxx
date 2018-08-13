@@ -1,5 +1,9 @@
 # Change-logs
 
+## 21. August 13, 2018
+Release status: beta-v19
+Up-to-date with Linage-OS source code.
+
 ## 20. August 6, 2018
 Release status: beta-v18
 Disabled mpdecision by default. Enabled lazyplug (Required SmartPack-Kernel Manager). Up-to-date with Linage-OS source code.
