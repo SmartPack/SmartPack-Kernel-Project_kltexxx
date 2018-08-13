@@ -1,8 +1,12 @@
 # Change-logs
 
+## 56. August 13, 2018
+*Stable release: final-v14_r2*
+### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.
+One more *final* build (hopefully the last one... silly me...). Disabled mpdecision by default. Enabled lazyplug (Required SmartPack-Kernel Manager). Built using Bleeding edge toolchain (GCC-8.2). Fixed spectrum based "Performance Tweaks". Up-to-date with Linage-OS source code.
+
 ## 55. July 12, 2018
 *Stable release: final-v14_r1*
-### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.
 One more *final* build to fix some simple issues. Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo.
 
 ## 54. June 19, 2018
