@@ -40,7 +40,7 @@
 
 GOOGLE="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
 
-UBERTC="/home/sunil/UBERTC-arm-eabi-8.2/bin/arm-none-eabi-"
+UBERTC="/home/sunil/UBERTC-arm-eabi-8.2.1/bin/arm-linux-gnueabi-"
 
 LINARO="/home/sunil/arm-linux-androideabi-7.3-linaro/bin/arm-eabi-"
 
