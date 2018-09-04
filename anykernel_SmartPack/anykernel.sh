@@ -47,6 +47,17 @@ ramdisk_compression=auto;
 chmod -R 755 $ramdisk
 
 ## AnyKernel install
+
+# Check Android version
+ui_print "Checking android version...";
+android_ver=$(file_getprop /system/build.prop "ro.build.version.release");
+ui_print "Android $android_ver detected...";
+ui_print " ";
+if [ ! "$android_ver" == "8.1.0" ]; then
+  ui_print "This version of SmartPack-Kernel is only compatible with Android 8.1.0!";
+  exit 1;
+fi;
+
 dump_boot;
 
 # begin ramdisk changes
