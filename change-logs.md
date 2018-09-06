@@ -1,5 +1,9 @@
 # Change-logs
 
+## 22. September 06, 2018
+Release status: beta-v20
+Switch toolchain into latest (GCC-8.2.1). Add control over Min Display Backlight. Add OS check to the anykernel script so that it won't be installed on any android version except Android 8.1.0 (Oreo).
+
 ## 21. August 13, 2018
 Release status: beta-v19
 Up-to-date with Linage-OS source code.
