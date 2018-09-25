@@ -1,5 +1,9 @@
 # Change-logs
 
+## 23. September 25, 2018
+Release status: stable-v21
+Up-to-date with Linage-OS source code. Re-add SmartPack boot script with a lot of useful tweaks.
+
 ## 22. September 06, 2018
 Release status: beta-v20
 Switch toolchain into latest (GCC-8.2.1). Add control over Min Display Backlight. Add OS check to the anykernel script so that it won't be installed on any android version except Android 8.1.0 (Oreo).
