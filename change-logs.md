@@ -1,5 +1,9 @@
 # Change-logs
 
+## 25. October 09, 2018
+Release status: stable-v23
+SmartPack boot script: Merged updates profile provided by justjr@xda-developers.com. Up-to-date with Linage-OS source code.
+
 ## 24. October 08, 2018
 Release status: stable-v22
 Removed Intel thermal (finally). Largely updated SmartPack boot script on the basis of the profile provided by justjr@xda-developers.com (Highly advised to reset current Kernel Manager settings)
