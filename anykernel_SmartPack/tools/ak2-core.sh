@@ -123,7 +123,13 @@ unpack_ramdisk() {
     ui_print "Updating SmartPack-Kernel...";
     ui_print " ";
   else
+  if [ -f $ramdisk/version ]; then
+    ui_print "Updating over $(cat $ramdisk/version)...";
+    ui_print " ";
+  else
     ui_print "Installing SmartPack-Kernel...";
+    ui_print " ";
+  fi
     ui_print " ";
   fi
 
