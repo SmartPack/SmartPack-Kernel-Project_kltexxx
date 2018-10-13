@@ -91,9 +91,6 @@ on property:sys.boot_completed=1
     # CPU Input Boost
     write /sys/kernel/cpu_input_boost/enabled 0
 
-    # CPU Voltage
-    write /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table "740 750 760 770 780 800 810 820 840 850 880 890 920 965 1025 1060 1075 1080 1110 1125"
-
     # CPU Hotplug
     write /sys/kernel/alucard_hotplug/hotplug_freq_1_1 268800
     write /sys/kernel/alucard_hotplug/hotplug_freq_2_0 0
