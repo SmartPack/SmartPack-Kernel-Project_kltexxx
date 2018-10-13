@@ -1,16 +1,19 @@
 # Change-logs
 
+## 57. October 13, 2018
+*Stable release: v14_r3*
+Toolchain: switch to GCC 8.2.1 (latest). Display: Added Min Backlight Control. Thermal: Removed Intelli-thermal. Thermal: MSM Thermal: Exposed advanced parameters and added support on Kernel Manager. CPU: Overclocked to 2.84 GHz. Ramdisk: re-import SmartPack boot script with a lot of parameters suggested by justjr @ xda-developers.com. Anykernel: Added android version check so that it will abort on unsupported Android versions (anything except Android 7.1.2). Up-to-date with Linage-OS source code.
+
 ## 56. August 13, 2018
-*Stable release: final-v14_r2*
-### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.
-One more *final* build (hopefully the last one... silly me...). Disabled mpdecision by default. Enabled lazyplug (Required SmartPack-Kernel Manager). Built using Bleeding edge toolchain (GCC-8.2). Fixed spectrum based "Performance Tweaks". Up-to-date with Linage-OS source code.
+*Stable release: v14_r2*
+Disabled mpdecision by default. Enabled lazyplug (Required SmartPack-Kernel Manager). Built using Bleeding edge toolchain (GCC-8.2). Fixed spectrum based "Performance Tweaks". Up-to-date with Linage-OS source code.
 
 ## 55. July 12, 2018
-*Stable release: final-v14_r1*
+*Stable release: v14_r1*
 One more *final* build to fix some simple issues. Update lowest charging rates (from 400 mA) of ac and wl levels. Fixed cpufreq interactive using higher frequencies. Merged recent changes from osm0sis's Anykernel repo.
 
 ## 54. June 19, 2018
-*Stable release: final-v14*
+*Stable release: v14*
 ~~### Please note: This will be the last and *final* release of SmartPack-Kernel for LineageOS-14.1.~~
 Added LED blink/fade control. Added boeffla generic wakelock blocker driver (v1.1.0). Merge recent patches from osm0sis's anykernel2 repo.
 
