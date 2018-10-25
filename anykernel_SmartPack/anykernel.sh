@@ -49,6 +49,7 @@ chmod -R 755 $ramdisk
 ## AnyKernel install
 
 # Check Android version
+ui_print " ";
 ui_print "Checking android version...";
 android_ver=$(file_getprop /system/build.prop "ro.build.version.release");
 ui_print "Android $android_ver detected...";
@@ -62,10 +63,17 @@ dump_boot;
 
 # begin ramdisk changes
 
+# remove spectrum support files
+if [ -e $ramdisk/init.spectrum.rc ]; then
+	rm $ramdisk/init.spectrum.rc
+fi
+if [ -e $ramdisk/init.spectrum.sh ]; then
+	rm $ramdisk/init.spectrum.sh
+fi
+
 # init.rc
 backup_file init.rc;
 grep "import /init.SmartPack.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.SmartPack.rc\n&/' init.rc
-grep "import /init.spectrum.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.spectrum.rc\n&/' init.rc
 
 # init.qcom.rc
 backup_file init.qcom.rc;
