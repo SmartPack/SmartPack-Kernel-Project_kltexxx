@@ -1,5 +1,9 @@
 # Change-logs
 
+## 26. October 26, 2018
+Release status: stable-v24
+MSMS_Thermal: enabled a bunch of advanced parameters. Fixed the annoying sound issue. SmartPack boot script: Update default profile (credits: justjr@xda-developers.com). Remove undervolting by default. Removed Spectrum support.
+
 ## 25. October 09, 2018
 Release status: stable-v23
 SmartPack boot script: Merged updates profile provided by justjr@xda-developers.com. Up-to-date with Linage-OS source code.
