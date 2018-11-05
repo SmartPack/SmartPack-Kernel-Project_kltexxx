@@ -679,14 +679,7 @@ static ssize_t store_an30259a_led_fade(struct device *dev,
 static ssize_t show_an30259a_led_intensity(struct device *dev,
                     struct device_attribute *attr, char *buf)
 {
-	switch(led_intensity) {
-		case  0:	return sprintf(buf, "%d - CM stock LED intensity\n", led_intensity);
-		case 40:	return sprintf(buf, "%d - Samsung stock LED intensity\n", led_intensity);
-		default:	if (led_intensity < 40) 
-					return sprintf(buf, "%d - LED intesity darker by %d steps\n", led_intensity, 40-led_intensity);
-				else
-					return sprintf(buf, "%d - LED intesity brighter by %d steps\n", led_intensity, led_intensity-40);
-	}
+	return sprintf(buf, "%d\n", led_intensity);
 }
 
 static ssize_t store_an30259a_led_intensity(struct device *dev,
