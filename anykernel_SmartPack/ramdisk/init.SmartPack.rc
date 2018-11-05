@@ -131,7 +131,7 @@ on property:sys.boot_completed=1
 
     # Sound
     write /sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd 0
-    write /sys/class/misc/boeffla_sound/boeffla_sound 1
+    write /sys/class/misc/boeffla_sound/boeffla_sound 0
 
     # Disaply and LED
     write /sys/class/sec/led/led_fade 1
