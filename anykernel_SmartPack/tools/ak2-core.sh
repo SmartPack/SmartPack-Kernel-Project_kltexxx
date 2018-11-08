@@ -121,6 +121,15 @@ unpack_ramdisk() {
   if [ $? != 0 -o -z "$(ls $ramdisk)" ]; then
     ui_print " "; ui_print "Unpacking ramdisk failed. Aborting..."; exit 1;
   fi;
+
+  if [ -f $ramdisk/version ]; then
+    ui_print "Updating over $(cat $ramdisk/version)...";
+    ui_print " ";
+  else
+    ui_print "Installing SmartPack-Kernel...";
+    ui_print " ";
+  fi
+
   test ! -z "$(ls /tmp/anykernel/rdtmp)" && cp -af /tmp/anykernel/rdtmp/* $ramdisk;
 }
 dump_boot() {

@@ -71,16 +71,14 @@ if [ -f /tmp/anykernel/banner ]; then
   ui_print " ";
 fi;
 
-ui_print "$(file_getprop /tmp/anykernel/anykernel.sh kernel.string)";
+ui_print "SmartPack-Kernel $(cat /tmp/anykernel/ramdisk/version) for Samsung Galaxy S5";
 if [ -f /tmp/anykernel/version ]; then
   ui_print " ";
-  while IFS='' read -r line || $bb [[ -n "$line" ]]; do
-    ui_print "$line";
-  done < /tmp/anykernel/version;
+  ui_print "$(cat /tmp/anykernel/version)";
   ui_print " ";
 fi;
 ui_print " ";
-ui_print "AnyKernel2 by osm0sis @ xda-developers";
+ui_print "...(c) sunilpaulmathew@xda-developers.com...";
 ui_print " ";
 ui_print " ";
 
@@ -94,7 +92,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
   ui_print "Checking device...";
   device="$(getprop ro.product.device)";
   product="$(getprop ro.build.product)";
-  for i in 1 2 3 4 5; do
+  for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
     testname="$(file_getprop /tmp/anykernel/anykernel.sh device.name$i)";
     test "$testname" || break;
     if [ "$device" == "$testname" -o "$product" == "$testname" ]; then
@@ -103,7 +101,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
       break;
     fi;
   done;
-  ui_print " ";
+  ui_print "Device is compatible...";
   if [ "$match" != 1 ]; then
     abort "Unsupported device. Aborting...";
   fi;
