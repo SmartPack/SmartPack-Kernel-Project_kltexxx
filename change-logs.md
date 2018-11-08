@@ -1,5 +1,9 @@
 # Change-logs
 
+## 27. November 08, 2018
+Release status: stable-v25
+Add options to block more wakelocks. Add brightness control for notification LED. Merge updates from osm0sis's anykernel repo. SmartPack boot script: merge few more updates and disable boeffla sound by default.
+
 ## 26. October 26, 2018
 Release status: stable-v24
 MSMS_Thermal: enabled a bunch of advanced parameters. Fixed the annoying sound issue. SmartPack boot script: Update default profile (credits: justjr@xda-developers.com). Remove undervolting by default. Removed Spectrum support.
