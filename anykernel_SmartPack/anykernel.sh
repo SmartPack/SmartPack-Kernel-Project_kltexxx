@@ -44,13 +44,16 @@ ramdisk_compression=auto;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
-chmod -R 755 $ramdisk
+chmod -R 750 $ramdisk/*;
+chmod -R 755 $ramdisk/sbin;
+chown -R root:root $ramdisk/*;
+
 
 ## AnyKernel install
 
 # Check Android version
-ui_print "Checking android version...";
 ui_print " ";
+ui_print "Checking android version...";
 android_ver=$(file_getprop /system/build.prop "ro.build.version.release");
 ui_print "Android $android_ver detected...";
 ui_print " ";
@@ -74,8 +77,6 @@ remove_line init.qcom.rc "start mpdecision";
 
 # init.tuna.rc
 
-# init.superuser.rc
-
 # fstab.tuna
 
 # end ramdisk changes
@@ -83,3 +84,4 @@ remove_line init.qcom.rc "start mpdecision";
 write_boot;
 
 ## end install
+
