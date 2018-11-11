@@ -1,5 +1,9 @@
 # Change-logs
 
+## 28. November 11, 2018
+Release status: stable-v26
+Up-to-date with Linage-OS source code.
+
 ## 27. November 08, 2018
 Release status: stable-v25
 Add options to block more wakelocks. Add brightness control for notification LED. Merge updates from osm0sis's anykernel repo. SmartPack boot script: merge few more updates and disable boeffla sound by default.
