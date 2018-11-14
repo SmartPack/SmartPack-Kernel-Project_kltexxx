@@ -1,8 +1,8 @@
 # Change-logs
 
-## 28. November 11, 2018
+## 28. November 14, 2018
 Release status: stable-v26
-Up-to-date with Linage-OS source code.
+Unified Oreo & Pie kernels. Up-to-date with Linage-OS source code.
 
 ## 27. November 08, 2018
 Release status: stable-v25
