@@ -1,5 +1,9 @@
 # Change-logs
 
+## 58. November 16, 2018
+*Stable release: v14_r4*
+wakeup: add options to block more wakelocks. leds-an30259a.c: Added brightness control for notification LED. anykernel ramdisk: removed spectrum support.  SmartPack boot script: Merged updates from Oreo branch. Anykernel: Incorporating recent patches from osm0sis's AnyKernel2 repo. Up-to-date with Linage-OS source code.
+
 ## 57. October 13, 2018
 *Stable release: v14_r3*
 Toolchain: switch to GCC 8.2.1 (latest). Display: Added Min Backlight Control. Thermal: Removed Intelli-thermal. Thermal: MSM Thermal: Exposed advanced parameters and added support on Kernel Manager. CPU: Overclocked to 2.84 GHz. Ramdisk: re-import SmartPack boot script with a lot of parameters suggested by justjr @ xda-developers.com. Anykernel: Added android version check so that it will abort on unsupported Android versions (anything except Android 7.1.2). Up-to-date with Linage-OS source code.

@@ -52,7 +52,7 @@ KERNEL_NAME="SmartPack-Kernel"
 
 KERNEL_VARIANT="kltekor"	# options: klte, kltekor, kltespr, klteduos, kltekdi & all (build all the variants)
 
-KERNEL_VERSION="stable-v14_r3"   # leave as such, if no specific version tag
+KERNEL_VERSION="stable-v14_r4"   # leave as such, if no specific version tag
 
 KERNEL_DEFCONFIG="SmartPack_@$KERNEL_VARIANT@_defconfig"
 
