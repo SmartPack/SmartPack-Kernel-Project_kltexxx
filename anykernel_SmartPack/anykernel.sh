@@ -45,7 +45,6 @@ ramdisk_compression=auto;
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
-chmod -R 755 $ramdisk/sbin;
 chown -R root:root $ramdisk/*;
 
 
@@ -72,12 +71,11 @@ dump_boot;
 # begin ramdisk changes
 
 # init.rc
-backup_file init.rc;
-grep "import /init.SmartPack.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.SmartPack.rc\n&/' init.rc
- # init.qcom.rc
 
+ # init.qcom.rc
 backup_file init.qcom.rc;
 remove_line init.qcom.rc "start mpdecision";
+insert_line init.qcom.rc "init.SmartPack.rc" before "on boot" " import init.SmartPack.rc";
 
 # init.tuna.rc
 

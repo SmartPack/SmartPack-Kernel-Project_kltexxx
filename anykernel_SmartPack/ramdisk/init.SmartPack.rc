@@ -17,165 +17,39 @@
 # GNU General Public License for more details.
 #
 
-on property:sys.boot_completed=1
-    start SmartPack-boot
+# SmartPack-Kernel default settings
+# Huge thanks to sultanxda and justjr @ xda-developers.com
 
-    # Apply SmartPack-Kernel default settings
-    # Huge thanks to sultanxda and justjr @ xda-developers.com
-
+on boot
     # CPU core control
     chmod 0644 /sys/devices/system/cpu/cpu1/online
     write /sys/devices/system/cpu/cpu1/online 1
     chmod 0444 /sys/devices/system/cpu/cpu1/online
     chmod 0644 /sys/devices/system/cpu/cpu2/online
-    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu2/online 1
     chmod 0444 /sys/devices/system/cpu/cpu2/online
     chmod 0644 /sys/devices/system/cpu/cpu3/online
     write /sys/devices/system/cpu/cpu3/online 1
     chmod 0444 /sys/devices/system/cpu/cpu3/online
 
-    # Multi-core powersaving 
-    write /sys/devices/system/cpu/sched_mc_power_savings 0
-
-    # Interactive governor tweaks
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    # Set Interactive as CPU governor
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    chmod 0444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 0644 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    chmod 0444 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-    chmod 0644 /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    chmod 0444 /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-    chmod 0644 /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    chmod 0444 /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 80000
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 99
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1190400:60000 1728000:80000 2265600:120000"
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "98 268800:29 300000:12 422400:34 652800:41 729600:12 883200:52 960000:9 1036800:8 1190400:73 1267200:6 1497600:86 1574400:5 1728000:88 1958400:90 2265600:95 2457600:100"
-
-    # CPU Min Freq
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 268800
-    chmod 0444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chmod 0644 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
-    chmod 0444 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-    chmod 0644 /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
-    chmod 0444 /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
-    chmod 0644 /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
-    chmod 0444 /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
-
-    # CPU Max Freq
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2457600
-    chmod 0444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chmod 0644 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 2457600
-    chmod 0444 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    chmod 0644 /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2457600
-    chmod 0444 /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-    chmod 0644 /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 2457600
-    chmod 0444 /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
-
-    # CPU Input Boost
-    write /sys/kernel/cpu_input_boost/enabled 0
-
-    # CPU Hotplug
-    write /sys/kernel/alucard_hotplug/hotplug_enable 0
-    write /sys/class/misc/mako_hotplug_control/enabled 0
-    write /sys/module/lazyplug/parameters/lazyplug_active 1
-    write /sys/module/lazyplug/parameters/nr_run_profile_sel 5
-
-    # Misc CPU
-    write /sys/module/lpm_levels/enable_low_power/l2 4
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/retention/idle_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/retention/idle_enabled 1
-
-    # GPU
-    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 578000000
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 27000000
-    write /sys/module/adreno_idler/parameters/adreno_idler_active 0
-
-    # Thermal
-    write /sys/module/msm_thermal/vdd_restriction/enabled 0
-    write /sys/module/msm_thermal/parameters/enabled 0
-    write /sys/module/msm_thermal/core_control/enabled 1
-
-    # Sound
-    write /sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd 0
-    write /sys/class/misc/boeffla_sound/boeffla_sound 0
-
-    # Disaply and LED
-    write /sys/class/sec/led/led_fade 1
-    write /sys/module/mdss_fb/parameters/backlight_min 15
-
-    # LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    chmod 666 /sys/module/lowmemorykiller/parameters/minfree
-    chown root /sys/module/lowmemorykiller/parameters/minfree
-    write /sys/module/lowmemorykiller/parameters/minfree "16384,20480,24576,41984,49152,65536"
-
-    # VM
-    write /proc/sys/vm/drop_caches 0
-    write /proc/sys/vm/oom_dump_tasks 0
-    write /proc/sys/vm/overcommit_memory 1
-    write /proc/sys/vm/oom_kill_allocating_task 0
-    write /proc/sys/vm/dirty_expire_centisecs 250
-    write /proc/sys/vm/dirty_writeback_centisecs 500
-    write /proc/sys/vm/laptop_mode 0
-    write /proc/sys/vm/dirty_ratio 60
-    write /proc/sys/vm/dirty_background_ratio 30
-    write /proc/sys/vm/page-cluster 2
-    write /proc/sys/vm/swappiness 50
-    write /proc/sys/vm/vfs_cache_pressure 50
 
     # IO
-    write /sys/block/mmcblk1/queue/read_ahead_kb 512
-    write /sys/block/mmcblk0/queue/iosched/async_expire 2500
-    write /sys/block/mmcblk1/queue/iosched/front_merges 1
-    write /sys/block/mmcblk1/queue/iosched/writes_starved 2
-    write /sys/block/mmcblk0/queue/iosched/fifo_batch 16
-    write /sys/block/mmcblk0/queue/iosched/sync_expire 250
-    write /sys/block/mmcblk1/queue/iosched/fifo_batch 16
-    write /sys/block/mmcblk1/queue/iosched/write_expire 3500
-    write /sys/block/mmcblk1/queue/iosched/read_expire 600
-    write /sys/block/mmcblk0/queue/read_ahead_kb 1024
     write /sys/block/mmcblk0/queue/rq_affinity 1
     write /sys/block/mmcblk0/queue/iostats 0
+    write /sys/block/mmcblk0/queue/read_ahead_kb 1024
     write /sys/block/mmcblk1/queue/rq_affinity 1
     write /sys/block/mmcblk1/queue/iostats 0
+    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
 
-    # Misc
-    write /proc/sys/kernel/random/read_wakeup_threshold 256
-    write /proc/sys/kernel/random/write_wakeup_threshold 320
-    write /sys/kernel/dyn_fsync/Dyn_fsync_active 0
+on property:sys.boot_completed=1
 
-    # The END
+    # Execute SmartPack boot script... 
+    exec u:r:init:s0 -- /init.SmartPack.sh
+    exec u:r:init:s0 root root -- /init.SmartPack.sh
+    exec u:r:su:s0 root root -- /init.SmartPack.sh
+    exec u:r:magisk:s0 root root -- /init.SmartPack.sh
+    exec u:r:supersu:s0 root root -- /init.SmartPack.sh
+
+# The END
