@@ -391,8 +391,13 @@ static int cpufreq_parse_governor(char *str_governor, unsigned int *policy,
 			ret = request_module("cpufreq_%s", str_governor);
 			mutex_lock(&cpufreq_governor_mutex);
 
+			/*
+			* Fall back to "interactive" if the default governor wasn't found.
+			*/
 			if (ret == 0)
 				t = __find_governor(str_governor);
+			else
+				t = __find_governor("interactive");
 		}
 
 		if (t != NULL) {
