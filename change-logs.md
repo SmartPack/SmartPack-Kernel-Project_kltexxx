@@ -1,5 +1,9 @@
 # Change-logs
 
+## 29. November 25, 2018
+Release status: stable-v27
+Fixed core 2 stick on "Performance" governer. Disabled Kernel Samepage Merging (KSM). SmartPack boot script: update default profile (credits: justjr) and some workaround for Pie ROMs (Thanks to @jprimero15)
+
 ## 28. November 14, 2018
 Release status: stable-v26
 Unified Oreo & Pie kernels. Up-to-date with Linage-OS source code.
