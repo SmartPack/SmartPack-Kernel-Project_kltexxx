@@ -71,11 +71,20 @@ dump_boot;
 # begin ramdisk changes
 
 # init.rc
+backup_file init.rc;
+grep "import /init.SmartPack.rc" init.rc >/dev/null || sed -i '1,/.*import.*/s/.*import.*/import \/init.SmartPack.rc\n&/' init.rc
 
  # init.qcom.rc
 backup_file init.qcom.rc;
 remove_line init.qcom.rc "start mpdecision";
-insert_line init.qcom.rc "init.SmartPack.rc" before "on boot" " import init.SmartPack.rc";
+insert_line init.qcom.rc "u:r:supersu:s0 root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:supersu:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "u:r:magisk:s0 root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:magisk:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "u:r:su:s0 root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:su:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "u:r:init:s0 root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:init:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "u:r:supersu:s0 root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:supersu:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "root root -- /init.SmartPack.sh" after "Post boot services" "    exec u:r:supersu:s0 root root -- /init.SmartPack.sh"
+insert_line init.qcom.rc "Execute SmartPack boot script..." after "Post boot services" "    # Execute SmartPack boot script..."
+replace_string init.qcom.rc "setprop sys.io.scheduler zen" "setprop sys.io.scheduler bfq" "setprop sys.io.scheduler zen";
 
 # init.tuna.rc
 
