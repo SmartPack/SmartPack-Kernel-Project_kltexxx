@@ -153,9 +153,6 @@ elif [ -e arch/arm/configs/$KERNEL_DEFCONFIG ]; then
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
 		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
-		fi
 		if [ "y" == "$PREPARE_RELEASE" ]; then
 			echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 			cp $RELEASE_DIR/$KERNEL_NAME-$KERNEL_VARIANT-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-$KERNEL_VARIANT.zip
@@ -218,9 +215,6 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
 		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
-		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekor.zip
 	else
@@ -280,9 +274,6 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
 		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
-		fi
 		echo -e $COLOR_RED"\n Building for klte failed. Please fix the issues and try again...\n"$COLOR_NEUTRAL
 	fi
 	# kltedv
@@ -335,9 +326,6 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 	else
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
-		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_RED"\n Building for kltedv failed. Please fix the issues and try again...\n"$COLOR_NEUTRAL
 	fi
@@ -392,9 +380,6 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
 		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
-		fi
 		echo -e $COLOR_RED"\n Building for klteduos failed. Please fix the issues and try again...\n"$COLOR_NEUTRAL
 	fi
 	# kltekdi
@@ -442,18 +427,12 @@ elif [ "all" == "$KERNEL_VARIANT" ]; then
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
 		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
-		fi
 		echo -e $COLOR_GREEN"\n Preparing for kernel release\n"$COLOR_NEUTRAL
 		cp $RELEASE_DIR/$KERNEL_NAME-kltekdi-$KERNEL_VERSION-$KERNEL_DATE.zip kernel-release/$KERNEL_NAME-kltekdi.zip
 		echo -e $COLOR_GREEN"\n everything done... please visit '$RELEASE_DIR'...\n"$COLOR_NEUTRAL
 	else
 		if [ -f $ANYKERNEL_DIR/dtb ]; then
 			rm -f $ANYKERNEL_DIR/dtb
-		fi
-		if [ -f $ANYKERNEL_DIR/ramdisk/version ]; then
-			rm -f $ANYKERNEL_DIR/ramdisk/version
 		fi
 		echo -e $COLOR_RED"\n Building for kltekdi failed. Please fix the issues and try again...\n"$COLOR_NEUTRAL
 	fi
