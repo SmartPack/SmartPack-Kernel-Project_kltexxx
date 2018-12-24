@@ -40,12 +40,9 @@ if [ "$(grep -c SmartPack-Kernel- /proc/version)" -eq "1" ]; then
     echo 8 > /sys/module/lazyplug/parameters/nr_run_hysteresis
 
     # Thermal
-    echo 1 > /sys/module/msm_thermal/vdd_restriction/enabled
+    echo 0 > /sys/module/msm_thermal/vdd_restriction/enabled
     echo 0 > /sys/module/msm_thermal/parameters/enabled
-    echo 0 > /sys/module/msm_thermal/core_control/enabled
-    echo 80 > /sys/module/msm_thermal/parameters/freq_mitig_temp_degc
-    echo 90 > /sys/module/msm_thermal/parameters/core_temp_limit_degC
-    echo 85 > /sys/module/msm_thermal/parameters/hotplug_temp_degC
+    echo 1 > /sys/module/msm_thermal/core_control/enabled
 
     # Disaply and LED
     echo 1 > /sys/class/sec/led/led_fade
