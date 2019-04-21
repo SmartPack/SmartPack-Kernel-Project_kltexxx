@@ -1,5 +1,9 @@
 # Change-logs
 
+## 3. April 21, 2019
+Release status: beta-v3
+*Changes: Up-to-date with Lineage OS changes*
+
 ## 2. Dec 24, 2018
 Release status: alpha-v2
 *Changes: Reverted msm_thermal to stock settings (Please note: it will fix VDD restrictions not turning off).*
